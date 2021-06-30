@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ykB1o8NxmE1Fu+Jk+nvmfaz7woqDBsuQzXDz88nyR0B4g1mY99CL3SXW0RFQ+axsxEZPV4SDU9GioGwwelYVZQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\baylo\\OneDrive\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ROTMG_Items\\ROTMG_Items.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\baylo\\.nuget\\packages\\tmodloader.codeassist\\0.1.2\\tmodloader.codeassist.0.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
