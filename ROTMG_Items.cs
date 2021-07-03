@@ -19,8 +19,16 @@ namespace ROTMG_Items
 {
 	public class ROTMG_Items : Mod
 	{
-		private UserInterface _AbilityBarUserInterface;
+        public static DynamicSpriteFont exampleFont;
+        private UserInterface _AbilityBarUserInterface;
 		internal AbilityPowerBar AbilityPowerBar;
+
+
+        private UserInterface _exampleUserInterface;
+
+        internal UserInterface ExamplePersonUserInterface;
+        internal StatUI StatUI;
+
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             ROTMGModMessageType msgType = (ROTMGModMessageType)reader.ReadByte();
@@ -82,11 +90,23 @@ namespace ROTMG_Items
                 AbilityPowerBar = new AbilityPowerBar();
                 _AbilityBarUserInterface = new UserInterface();
                 _AbilityBarUserInterface.SetState(AbilityPowerBar);
+
+                if (FontExists("Fonts/ExampleFont"))
+                    exampleFont = GetFont("Fonts/ExampleFont");
+
+                StatUI = new StatUI();
+                StatUI.Activate();
+                _exampleUserInterface = new UserInterface();
+                _exampleUserInterface.SetState(StatUI);
             }
 
         }
         public override void UpdateUI(GameTime gameTime)
         {
+            if (StatUI.Visible)
+            {
+                _exampleUserInterface?.Update(gameTime);
+            }
             _AbilityBarUserInterface?.Update(gameTime);
         }
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -101,6 +121,21 @@ namespace ROTMG_Items
                     "ROTMG_Items: Ability Power Bar",
                     delegate {
                         _AbilityBarUserInterface.Draw(Main.spriteBatch, new GameTime());
+                        return true;
+                    },
+                    InterfaceScaleType.UI)
+                );
+            }
+
+            if (mouseTextIndex != -1)
+            {
+                layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
+                    "ExampleMod: Coins Per Minute",
+                    delegate {
+                        if (StatUI.Visible)
+                        {
+                            _exampleUserInterface.Draw(Main.spriteBatch, new GameTime());
+                        }
                         return true;
                     },
                     InterfaceScaleType.UI)

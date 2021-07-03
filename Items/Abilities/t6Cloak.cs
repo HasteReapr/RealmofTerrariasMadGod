@@ -26,5 +26,15 @@ namespace ROTMG_Items.Items.Abilities
             item.buffType = ModContent.BuffType<Buffs.RogueInvisible>();
             item.buffTime = 1440;
         }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<LunarEssence>());
+            recipe.AddIngredient(ModContent.ItemType<t5Cloak>());
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

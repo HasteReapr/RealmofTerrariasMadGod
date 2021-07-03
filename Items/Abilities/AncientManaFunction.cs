@@ -10,7 +10,6 @@ namespace ROTMG_Items.Items.Abilities
 		public override bool CloneNewInstances => true;
 		public int AncientCost = 0;
 		public int AncientHeal = 0;
-
 		public virtual void SafeSetDefaults()
 		{
 		}

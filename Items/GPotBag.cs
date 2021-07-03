@@ -26,10 +26,11 @@ namespace ROTMG_Items.Items
 		{
 			return true;
 		}
-public float randomPot = Main.rand.Next(1, 8);
+		public float randomPot = Main.rand.Next(1, 8);
+		public float RarePot;
 		public override void RightClick(Player player)
 		{
-			randomPot = Main.rand.Next(1, 8) + 1;
+			randomPot = Main.rand.Next(1, 8);
 			if (randomPot == 1)
 			{
 				player.QuickSpawnItem(ModContent.ItemType<GWisPot>());
@@ -56,11 +57,15 @@ public float randomPot = Main.rand.Next(1, 8);
 			}
 			if (randomPot == 7)
 			{
-				player.QuickSpawnItem(ModContent.ItemType<GManaPot>());
-			}
-			if (randomPot == 8)
-			{
-				player.QuickSpawnItem(ModContent.ItemType<GLifePot>());
+				RarePot = Main.rand.Next(0, 2);
+				if (RarePot == 0)
+				{
+					player.QuickSpawnItem(ModContent.ItemType<GManaPot>());
+				}
+				else if (RarePot == 1)
+				{
+					player.QuickSpawnItem(ModContent.ItemType<GLifePot>());
+				}
 			}
 			/*int randomGPot = new WeightedRandom<int>(
 			Tuple.Create(ModContent.ItemType<GWisPot>(), 1.25),

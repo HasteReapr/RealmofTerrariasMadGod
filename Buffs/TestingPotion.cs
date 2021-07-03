@@ -25,8 +25,8 @@ namespace ROTMG_Items.Buffs
             item.consumable = true;
             item.rare = ItemRarityID.Orange;
             item.value = Item.buyPrice(gold: 1);
-            item.buffType = ModContent.BuffType<Buffs.Unstable>(); //Specify an existing buff to be applied when used.
-            item.buffTime = 1200; //The amount of time the buff declared in item.buffType will last in ticks. 5400 / 60 is 90, so this buff will last 90 seconds.
+            item.buffType = ModContent.BuffType<Buffs.ZeroGravity>(); //Specify an existing buff to be applied when used.
+            item.buffTime = 60000; //The amount of time the buff declared in item.buffType will last in ticks. 5400 / 60 is 90, so this buff will last 90 seconds.
         }
     }
 }

@@ -49,5 +49,15 @@ namespace ROTMG_Items.Items.Abilities
 			}
 			return base.CanUseItem(player);
 		}
+
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ModContent.ItemType<HerbalEssence>());
+			recipe.AddIngredient(ModContent.ItemType<t4Prism>());
+			recipe.AddTile(TileID.WorkBenches);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
+		}
 	}
 }

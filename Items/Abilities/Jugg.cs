@@ -37,5 +37,15 @@ namespace ROTMG_Items.Items.Abilities
                 }
             return true;
         }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.LunarBar, 17);
+            recipe.AddIngredient(ItemID.IronskinPotion, 5);
+            recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

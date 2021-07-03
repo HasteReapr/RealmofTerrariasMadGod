@@ -20,7 +20,7 @@ using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-
+// modReferences = SubworldLibrary < put this in build.txt
 namespace ROTMG_Items
 {
 	// ModPlayer classes provide a way to attach data to Players and act on that data. ExamplePlayer has a lot of functionality related to 
@@ -87,16 +87,6 @@ namespace ROTMG_Items
 
 		public override float UseTimeMultiplier(Item item)
 		{
-			if(GDexPot > 1)
-            {
-				GPermIncrease += GDexPot * 0.05f;
-				return GPermIncrease;
-            }
-			if(DexPot > 1)
-            {
-				PermIncrease += DexPot * 0.05f;
-				return PermIncrease;
-            }
 			if (DexIncrease == true) 
 			{ 
 				return DexIncrease ? 1.75f : 1f;
@@ -109,6 +99,18 @@ namespace ROTMG_Items
             {
 				return WarriorBuff ? 1.75f : 1f;
             }
+			if (GDexPot > 1)
+			{
+				return 1f + GDexPot * 0.05f;
+				// GPermIncrease += GDexPot * 0.05f;
+				// return GPermIncrease;
+			}
+			if (DexPot > 1)
+			{
+				return 1f + DexPot * 0.05f;
+				//PermIncrease += DexPot * 0.05f;
+				//return PermIncrease;
+			}
 			return DexIncrease ? 1f : 1f;
 		}
 		public override void ResetEffects()

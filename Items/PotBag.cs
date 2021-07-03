@@ -27,9 +27,10 @@ namespace ROTMG_Items.Items
 			return true;
 		}
 		public float randomPot = Main.rand.Next(1, 8);
+		public float RarePot;
 		public override void RightClick(Player player)
 		{
-			randomPot = Main.rand.Next(1, 8) +1;
+			randomPot = Main.rand.Next(1, 8);
 			if (randomPot == 1){
 				player.QuickSpawnItem(ModContent.ItemType<WisPot>());
 			}
@@ -49,10 +50,14 @@ namespace ROTMG_Items.Items
 				player.QuickSpawnItem(ModContent.ItemType<SpdPot>());
 			}
 			if (randomPot == 7){
-				player.QuickSpawnItem(ModContent.ItemType<ManaPot>());
-			}
-			if (randomPot == 8){
-				player.QuickSpawnItem(ModContent.ItemType<LifePot>());
+				RarePot = Main.rand.Next(0, 2);
+				if (RarePot == 0)
+				{
+					player.QuickSpawnItem(ModContent.ItemType<ManaPot>());
+				}else if (RarePot == 1)
+                {
+					player.QuickSpawnItem(ModContent.ItemType<LifePot>());
+				}
 			}
 			/* int randomPot = new WeightedRandom<int>(
 			Tuple.Create(ModContent.ItemType<WisPot>(), 1.25),
