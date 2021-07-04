@@ -9,7 +9,7 @@ namespace ROTMG_Items.Items.Abilities
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Helmet of the Juggernaut");
-            Tooltip.SetDefault("A helmet forged of some mysterious metal. It is impossibly light, but impowering.");
+            Tooltip.SetDefault("A helmet forged of some mysterious metal. It is impossibly light, but impowering.\nGives armored and berserk.");
         }
 
         public override void SetDefaults()
@@ -25,6 +25,7 @@ namespace ROTMG_Items.Items.Abilities
             item.value = Item.buyPrice(gold: 1);
             item.buffType = ModContent.BuffType<Buffs.Armored>();
             item.buffTime = 780;
+            // https://luna.komica.org/23/src/1624551667654.webm
         }
 
         public override bool UseItem(Player player)

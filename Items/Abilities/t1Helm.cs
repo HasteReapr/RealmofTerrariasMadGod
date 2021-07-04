@@ -9,7 +9,7 @@ namespace ROTMG_Items.Items.Abilities
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Woodem Helmet");
-            Tooltip.SetDefault("Slightly uncomfortable, but you feel a strange power surge through it.");
+            Tooltip.SetDefault("Slightly uncomfortable, but you feel a strange power surge through it.\nGives speedy and berserk.");
         }
 
         public override void SetDefaults()
@@ -35,6 +35,15 @@ namespace ROTMG_Items.Items.Abilities
                     Main.player[i].AddBuff(ModContent.BuffType<Buffs.WarrBuff>(), 300, false);
                 }
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Wood, 30);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

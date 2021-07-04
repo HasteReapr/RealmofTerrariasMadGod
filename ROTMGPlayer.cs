@@ -188,6 +188,13 @@ namespace ROTMG_Items
 			// Here we would sync something like an RPG stat whenever the player changes it.
 			ROTMGPlayer clone = clientPlayer as ROTMGPlayer;
 		}
+
+		/*public override bool ModifyNurseHeal(NPC nurse, ref int health, ref bool removeDebuffs, ref string chatText)
+		{
+			AbilityPowerCurrent = AbilityDefaultMax;
+			return base.ModifyNurseHeal(nurse, ref health, ref removeDebuffs, ref chatText);
+		}*/
+
 		public override TagCompound Save()
 		{
 			// Read https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound to better understand Saving and Loading data.

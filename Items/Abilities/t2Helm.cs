@@ -9,7 +9,7 @@ namespace ROTMG_Items.Items.Abilities
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bronze Helmet");
-            Tooltip.SetDefault("A helmet made of solid bronze, it's heavy but has a more powerful essence.");
+            Tooltip.SetDefault("A helmet made of solid bronze, it's heavy but has a more powerful essence.\nGives speedy and berserk.");
         }
 
         public override void SetDefaults()
@@ -35,6 +35,16 @@ namespace ROTMG_Items.Items.Abilities
                     Main.player[i].AddBuff(ModContent.BuffType<Buffs.WarrBuff>(), 420, false);
                 }
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<t1Helm>());
+            recipe.AddIngredient(ModContent.ItemType<GreaterEssence>());
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

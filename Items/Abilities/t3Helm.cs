@@ -9,7 +9,7 @@ namespace ROTMG_Items.Items.Abilities
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Lead Helmet");
-            Tooltip.SetDefault("A helmet made of solid lead it feels like it's crushing your spine...");
+            Tooltip.SetDefault("A helmet made of solid lead it feels like it's crushing your spine...\nGives speedy and berserk.");
         }
         public override void SetDefaults()
         {
@@ -34,6 +34,16 @@ namespace ROTMG_Items.Items.Abilities
                     Main.player[i].AddBuff(ModContent.BuffType<Buffs.WarrBuff>(), 540, false);
                 }
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<t2Helm>());
+            recipe.AddIngredient(ModContent.ItemType<UnholyEssence>());
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

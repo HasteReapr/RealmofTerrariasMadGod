@@ -44,7 +44,7 @@ namespace ROTMG_Items.Items.Abilities
 		}
 		public void SkullHeal(int dmg, Vector2 Position)
 		{
-			float num = (float)dmg * 0.45f;
+			float num = (float)dmg * 0.5f;
 			if ((int)num == 0)
 			{
 				return;
@@ -55,11 +55,11 @@ namespace ROTMG_Items.Items.Abilities
 			}
 			Main.player[Main.myPlayer].lifeSteal -= num;
 			int num2 = projectile.owner;
-			Projectile.NewProjectile(Position.X, Position.Y, 0f, 0f, 305, 0, 0f, projectile.owner, (float)num2, num);
+			Projectile.NewProjectile(Position.X, Position.Y, 0f, 0f, ProjectileID.VampireHeal, 0, 0f, projectile.owner, (float)num2, num);
 		}
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-			SkullHeal(damage, projectile.Center); // code your own life steal function eventually...
+			SkullHeal(damage, projectile.Center);
         }
     }
 }

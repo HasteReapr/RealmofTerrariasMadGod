@@ -20,7 +20,6 @@ namespace ROTMG_Items.Items.Abilities
 			item.rare = ItemRarityID.Cyan;
 			item.damage = 0;
 			item.useStyle = ItemUseStyleID.HoldingOut; //yes
-			item.magic = true;
 			AncientCost = 65;
 			item.width = 40;
 			item.height = 40;
@@ -47,7 +46,7 @@ namespace ROTMG_Items.Items.Abilities
 				item.useStyle = ItemUseStyleID.HoldingUp;
 				item.useTime = 20;
 				item.useAnimation = 20;
-				item.mana = 65;
+				AncientCost = 65;
 				item.damage = 120;
 				item.shoot = ModContent.ProjectileType<GBomb>();
 				TeleportWait = 1;

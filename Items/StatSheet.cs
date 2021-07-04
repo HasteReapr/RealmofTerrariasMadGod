@@ -33,5 +33,13 @@ namespace ROTMG_Items.Items
 			StatUI.Visible = true;
 			return true;
         }
-    }
+
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.DirtBlock);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
+		}
+	}
 }

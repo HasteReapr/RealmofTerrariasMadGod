@@ -36,5 +36,15 @@ namespace ROTMG_Items.Items.Abilities
                 }
             return true;
         }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<t5Helm>());
+            recipe.AddIngredient(ModContent.ItemType<LunarEssence>());
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

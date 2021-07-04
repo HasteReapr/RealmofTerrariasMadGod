@@ -9,7 +9,7 @@ namespace ROTMG_Items.Items.Abilities
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Steel Helmet");
-            Tooltip.SetDefault("A helmet made of steel and infused with Plantera's rage.");
+            Tooltip.SetDefault("A helmet made of steel and infused with Plantera's rage.\nGives speedy and berserk.");
         }
         public override void SetDefaults()
         {
@@ -34,6 +34,16 @@ namespace ROTMG_Items.Items.Abilities
                     Main.player[i].AddBuff(ModContent.BuffType<Buffs.WarrBuff>(), 780, false);
                 }
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<t4Helm>());
+            recipe.AddIngredient(ModContent.ItemType<HerbalEssence>());
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

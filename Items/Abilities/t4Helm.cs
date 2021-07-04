@@ -9,7 +9,7 @@ namespace ROTMG_Items.Items.Abilities
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Crimson Helmet");
-            Tooltip.SetDefault("A helmet made of crimtane, the evil has been cleansed from it... hopefully.");
+            Tooltip.SetDefault("A helmet made of crimtane, the evil has been cleansed from it... hopefully.\nGives speedy and berserk.");
         }
         public override void SetDefaults()
         {
@@ -34,6 +34,16 @@ namespace ROTMG_Items.Items.Abilities
                     Main.player[i].AddBuff(ModContent.BuffType<Buffs.WarrBuff>(), 660, false);
                 }
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<t3Helm>());
+            recipe.AddIngredient(ModContent.ItemType<MechanicalEssence>());
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }
