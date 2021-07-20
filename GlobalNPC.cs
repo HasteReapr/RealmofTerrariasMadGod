@@ -4,6 +4,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using ROTMG_Items.Items;
+using System.Collections.Generic;
+using ROTMG_Items.Items.Consumables;
+using ROTMG_Items.Items.Weapons;
 
 namespace ROTMG_Items
 {
@@ -11,7 +14,34 @@ namespace ROTMG_Items
 	{
 		public override bool InstancePerEntity => true;
 
-		public override void NPCLoot(NPC npc)
+        public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
+        {
+            if(player.GetModPlayer<ROTMGPlayer>().Lost_Halls == true)
+            {
+				if (player.GetModPlayer<ROTMGPlayer>().moonded == false)
+				{
+					spawnRate += 40;
+					maxSpawns = 20;
+				}
+				else if(player.GetModPlayer<ROTMGPlayer>().moonded == true)
+				{
+					spawnRate += 5;
+					maxSpawns = 50;
+				}
+            }
+        }
+        public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+			if (spawnInfo.player.GetModPlayer<ROTMGPlayer>().Lost_Halls == true && spawnInfo.player.GetModPlayer<ROTMGPlayer>().moonded == false)
+            {
+				pool.Clear();
+				pool.Add(ModContent.NPCType<NPCs.SpookyBoi>(), 1f);
+            }else if(spawnInfo.player.GetModPlayer<ROTMGPlayer>().Lost_Halls == true && spawnInfo.player.GetModPlayer<ROTMGPlayer>().moonded == true)
+            {
+				pool.Clear();
+            }
+		}
+        public override void NPCLoot(NPC npc)
 		{
 			if(NPC.downedPlantBoss == true)
             {
@@ -29,7 +59,7 @@ namespace ROTMG_Items
 					Item.NewItem(npc.getRect(), ModContent.ItemType<Splendor>(), 1);
                 }
             }
-			if (NPC.downedMoonlord)
+			if (NPC.downedMoonlord) // do some sort of t13 and t14 weapon bag eventually.
             {
 				int majesty = Main.rand.Next(500) + 1;
 				if(majesty == 1)
@@ -42,7 +72,7 @@ namespace ROTMG_Items
             {
 				Item.NewItem(npc.getRect(), ModContent.ItemType<ColoSus>(), 1);
             }
-			int PotBag = Main.rand.Next(99);
+			int PotBag = Main.rand.Next(199);
 			if (PotBag == 1)
 			{
 				Item.NewItem(npc.getRect(), ModContent.ItemType<PotBag>(), 1);

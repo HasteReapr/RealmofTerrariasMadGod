@@ -6,10 +6,14 @@ namespace ROTMG_Items.Items.Abilities
 {
 	public class GoldenCoin : ModProjectile
 	{
-		public override void SetDefaults()
+        public override void SetStaticDefaults()
+        {
+			Main.projFrames[projectile.type] = 6;
+		}
+        public override void SetDefaults()
 		{
-			projectile.width = 48;
-			projectile.height = 48;
+			projectile.width = 24;
+			projectile.height = 32;
 			projectile.penetrate = -1;
 		}
 
@@ -45,12 +49,23 @@ namespace ROTMG_Items.Items.Abilities
             {
 				projectile.ai[1] = Main.rand.Next(2) + 1;
             }
+
+			if (++projectile.frameCounter >= 10)
+			{
+				projectile.frameCounter = 0;
+				if (++projectile.frame >= 6)
+				{
+					projectile.frame = 0;
+				}
+			}
 		}
+
+
 
 		public override void Kill(int timeLeft)
 		{
 			Main.PlaySound(SoundID.Item1, projectile.position);
-			Projectile.NewProjectile(projectile.position.X+24f, projectile.position.Y+24f, 0f, 0f, mod.ProjectileType("SilverCoin"), 0, 0f, projectile.owner, 0f, 0f);
+			Projectile.NewProjectile(projectile.position.X+16f, projectile.position.Y+16f, 0f, 0f, mod.ProjectileType("SilverCoin"), 0, 0f, projectile.owner, 0f, 0f);
 		}
 	}
 }

@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader.IO;
 using System;
-using ROTMG_Items.Dusts;
 
 namespace ROTMG_Items.Items.Abilities
 {

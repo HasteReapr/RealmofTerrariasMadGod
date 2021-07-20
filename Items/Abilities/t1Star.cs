@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using ROTMG_Items.Items;
 using ROTMG_Items;
+using ROTMG_Items.Items.Materials;
 
 namespace ROTMG_Items.Items.Abilities
 {

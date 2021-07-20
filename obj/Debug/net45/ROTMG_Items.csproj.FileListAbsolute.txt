@@ -23,7 +23,6 @@ C:\Users\baylo\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ROTMG_
 C:\Users\baylo\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ROTMG_Items\bin\Debug\net45\tModLoader.xml
 C:\Users\baylo\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ROTMG_Items\bin\Debug\net45\MonoMod.RuntimeDetour.xml
 C:\Users\baylo\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ROTMG_Items\bin\Debug\net45\MonoMod.Utils.xml
-C:\Users\baylo\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ROTMG_Items\obj\Debug\net45\ROTMG_Items.csprojAssemblyReference.cache
 C:\Users\baylo\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ROTMG_Items\obj\Debug\net45\ROTMG_Items.AssemblyInfoInputs.cache
 C:\Users\baylo\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ROTMG_Items\obj\Debug\net45\ROTMG_Items.AssemblyInfo.cs
 C:\Users\baylo\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ROTMG_Items\obj\Debug\net45\ROTMG_Items.csproj.CoreCompileInputs.cache
@@ -32,3 +31,4 @@ C:\Users\baylo\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ROTMG_
 C:\Users\baylo\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ROTMG_Items\obj\Debug\net45\ROTMG_Items.pdb
 C:\Users\baylo\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ROTMG_Items\bin\Debug\net45\SubworldLibrary.dll
 C:\Users\baylo\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ROTMG_Items\bin\Debug\net45\SubworldLibrary.xml
+C:\Users\baylo\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ROTMG_Items\obj\Debug\net45\ROTMG_Items.csproj.AssemblyReference.cache

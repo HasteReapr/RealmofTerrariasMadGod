@@ -1,10 +1,11 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ROTMG_Items.Items.Materials;
 
 namespace ROTMG_Items.Items.Abilities
 {
-	public class GFate : ModItem
+	public class GFate : AncientCostFunction
 	{
 		public override void SetStaticDefaults()
 		{
@@ -18,7 +19,7 @@ namespace ROTMG_Items.Items.Abilities
 			item.damage = 0;
 			item.useStyle = ItemUseStyleID.HoldingOut; //yes
 			item.magic = true;
-			item.mana = 100;
+			AncientCost = 75;
 			item.width = 40;
 			item.height = 40;
 			item.useTime = 120;

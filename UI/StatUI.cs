@@ -92,56 +92,56 @@ namespace ROTMG_Items.UI
 			// UIMoneyDisplay is a fairly complicated custom UIElement. UIMoneyDisplay handles drawing some text and coin textures.
 			// Organization is key to managing UI design. Making a contained UIElement like UIMoneyDisplay will make many things easier.
 
-			Lifepot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/LifePot"));
+			Lifepot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/LifePot"));
 			Lifepot.Left.Set(10, 0f);
 			Lifepot.Top.Set(10, 0f);
 			Lifepot.Width.Set(126, 0f);
 			Lifepot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(Lifepot);
 
-			Manapot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/ManaPot"));
+			Manapot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/ManaPot"));
 			Manapot.Left.Set(60, 0f);
 			Manapot.Top.Set(10, 0f);
 			Manapot.Width.Set(126, 0f);
 			Manapot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(Manapot);
 
-			Wispot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/WisPot"));
+			Wispot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/WisPot"));
 			Wispot.Left.Set(110, 0f);
 			Wispot.Top.Set(10, 0f);
 			Wispot.Width.Set(126, 0f);
 			Wispot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(Wispot);
 
-			Vitpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/VitPot"));
+			Vitpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/VitPot"));
 			Vitpot.Left.Set(160, 0f);
 			Vitpot.Top.Set(10, 0f);
 			Vitpot.Width.Set(126, 0f);
 			Vitpot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(Vitpot);
 
-			Dexpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/DexPot"));
+			Dexpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/DexPot"));
 			Dexpot.Left.Set(210, 0f);
 			Dexpot.Top.Set(10, 0f);
 			Dexpot.Width.Set(126, 0f);
 			Dexpot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(Dexpot);
 
-			Attpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/AttPot"));
+			Attpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/AttPot"));
 			Attpot.Left.Set(260, 0f);
 			Attpot.Top.Set(10, 0f);
 			Attpot.Width.Set(126, 0f);
 			Attpot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(Attpot);
 
-			Spdpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/SpdPot"));
+			Spdpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/SpdPot"));
 			Spdpot.Left.Set(310, 0f);
 			Spdpot.Top.Set(10, 0f);
 			Spdpot.Width.Set(126, 0f);
 			Spdpot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(Spdpot);
 
-			Defpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/DefPot"));
+			Defpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/DefPot"));
 			Defpot.Left.Set(360, 0f);
 			Defpot.Top.Set(10, 0f);
 			Defpot.Width.Set(126, 0f);
@@ -150,56 +150,56 @@ namespace ROTMG_Items.UI
 
 
 			//Greater pots I don't know how to organize code in a proper way.
-			GLifepot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/GLifePot"));
+			GLifepot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/GLifePot"));
 			GLifepot.Left.Set(10, 0f);
 			GLifepot.Top.Set(74, 0f);
 			GLifepot.Width.Set(126, 0f);
 			GLifepot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(GLifepot);
 
-			GManapot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/GManaPot"));
+			GManapot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/GManaPot"));
 			GManapot.Left.Set(60, 0f);
 			GManapot.Top.Set(74, 0f);
 			GManapot.Width.Set(126, 0f);
 			GManapot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(GManapot);
 
-			GWispot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/GWisPot"));
+			GWispot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/GWisPot"));
 			GWispot.Left.Set(110, 0f);
 			GWispot.Top.Set(74, 0f);
 			GWispot.Width.Set(126, 0f);
 			GWispot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(GWispot);
 
-			GVitpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/GVitPot"));
+			GVitpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/GVitPot"));
 			GVitpot.Left.Set(160, 0f);
 			GVitpot.Top.Set(74, 0f);
 			GVitpot.Width.Set(126, 0f);
 			GVitpot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(GVitpot);
 
-			GDexpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/GDexPot"));
+			GDexpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/GDexPot"));
 			GDexpot.Left.Set(210, 0f);
 			GDexpot.Top.Set(74, 0f);
 			GDexpot.Width.Set(126, 0f);
 			GDexpot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(GDexpot);
 
-			GAttpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/GAttPot"));
+			GAttpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/GAttPot"));
 			GAttpot.Left.Set(260, 0f);
 			GAttpot.Top.Set(74, 0f);
 			GAttpot.Width.Set(126, 0f);
 			GAttpot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(GAttpot);
 
-			GSpdpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/GSpdPot"));
+			GSpdpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/GSpdPot"));
 			GSpdpot.Left.Set(310, 0f);
 			GSpdpot.Top.Set(74, 0f);
 			GSpdpot.Width.Set(126, 0f);
 			GSpdpot.Height.Set(18, 0f);
 			CoinCounterPanel.Append(GSpdpot);
 
-			GDefpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/GDefPot"));
+			GDefpot = new UIImage(ModContent.GetTexture("ROTMG_Items/Items/Consumables/GDefPot"));
 			GDefpot.Left.Set(360, 0f);
 			GDefpot.Top.Set(74, 0f);
 			GDefpot.Width.Set(126, 0f);

@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
+using ROTMG_Items.Items.Materials;
 
 namespace ROTMG_Items.Items.Abilities
 {

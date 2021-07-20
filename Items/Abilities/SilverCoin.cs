@@ -12,10 +12,15 @@ namespace ROTMG_Items.Items.Abilities
 {
 	public class SilverCoin : ModProjectile
 	{
+		public override void SetStaticDefaults()
+		{
+			Main.projFrames[projectile.type] = 6;
+		}
+
 		public override void SetDefaults()
 		{
-			projectile.width = 48;
-			projectile.height = 48;
+			projectile.width = 24;
+			projectile.height = 32;
 			projectile.penetrate = -1;
 		}
 
@@ -50,6 +55,15 @@ namespace ROTMG_Items.Items.Abilities
 			if (projectile.ai[1] == 3)
 			{
 				projectile.ai[1] = Main.rand.Next(2) + 1;
+			}
+
+			if (++projectile.frameCounter >= 10)
+			{
+				projectile.frameCounter = 0;
+				if (++projectile.frame >= 6)
+				{
+					projectile.frame = 0;
+				}
 			}
 		}
 

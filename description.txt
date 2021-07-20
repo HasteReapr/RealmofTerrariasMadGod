@@ -5,4 +5,7 @@ Most sprites made by Vale.
 Also added a UI feature that is toggled by typing /stats into chat. It displays your current stats and the max stats. (Which I may make randomized later on...)
 Will start development on dungeons soon(TM).
 
+Special thanks to people in the TModLoader discord being super patient with my dumb questions and helping me understand everything instead of being rude.
+Especially Dr.Serous, DireWolf, and JopoJelly for patientely helping me.
+
 Join the discord server here! https://discord.gg/AW7BKuzuH5

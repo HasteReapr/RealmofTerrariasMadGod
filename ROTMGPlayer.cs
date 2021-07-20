@@ -20,16 +20,24 @@ using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-// modReferences = SubworldLibrary < put this in build.txt
+
 namespace ROTMG_Items
 {
 	// ModPlayer classes provide a way to attach data to Players and act on that data. ExamplePlayer has a lot of functionality related to 
 	// several effects and items in ExampleMod. See SimpleModPlayer for a very simple example of how ModPlayer classes work.
 	public class ROTMGPlayer : ModPlayer
 	{
+		public bool Lost_Halls;
+		public bool moonded;
+
+		public bool t15Breastplate;
+		public bool t15Leggings;
+		public bool t15Helmet;
+		public bool t15SetBonus;
 		public bool WarriorBuff;
 		public bool DexIncrease;
 		public bool AdminCrown;
+		public bool SpookyPet;
 		public float PermIncrease;
 		public float GPermIncrease;
 		public int score;
@@ -95,21 +103,35 @@ namespace ROTMG_Items
 			{
 				return AdminCrown ? 9000f : 1f;
 			}
+			if (t15SetBonus == true)
+            {
+				return t15SetBonus ? 1.8f : 1f;
+            }
 			if (WarriorBuff == true)
             {
 				return WarriorBuff ? 1.75f : 1f;
             }
+			if (t15Breastplate == true)
+            {
+				return t15Breastplate ? 1.1f : 1f;
+            }
+			if (t15Leggings == true)
+            {
+				return t15Leggings ? 1.1f : 1f;
+            }
+			if (t15Helmet == true)
+            {
+				return t15Helmet ? 1.1f : 1f;
+            }
 			if (GDexPot > 1)
-			{
+            {
 				return 1f + GDexPot * 0.05f;
-				// GPermIncrease += GDexPot * 0.05f;
-				// return GPermIncrease;
-			}
+            }
 			if (DexPot > 1)
 			{
 				return 1f + DexPot * 0.05f;
-				//PermIncrease += DexPot * 0.05f;
-				//return PermIncrease;
+				// GPermIncrease += GDexPot * 0.05f;
+				// return GPermIncrease;
 			}
 			return DexIncrease ? 1f : 1f;
 		}
@@ -133,6 +155,11 @@ namespace ROTMG_Items
 			Unstable = false;
 			DexIncrease = false;
 			WarriorBuff = false;
+			SpookyPet = false;
+			t15Breastplate = false;
+			t15Helmet = false;
+			t15Leggings = false;
+			t15SetBonus = false;
 		}
 		public override void clientClone(ModPlayer clientClone)
 		{
@@ -180,6 +207,7 @@ namespace ROTMG_Items
 			packet.Write(AbilityPowerRegen);
 			packet.Write(AbilityPowerRegenTimer);
 			packet.Write(AbilityPowerRegenRate);
+			packet.Write(moonded);
 			packet.Send(toWho, fromWho);
 
 		}
@@ -189,13 +217,43 @@ namespace ROTMG_Items
 			ROTMGPlayer clone = clientPlayer as ROTMGPlayer;
 		}
 
-		/*public override bool ModifyNurseHeal(NPC nurse, ref int health, ref bool removeDebuffs, ref string chatText)
+        /*public override bool ModifyNurseHeal(NPC nurse, ref int health, ref bool removeDebuffs, ref string chatText)
 		{
 			AbilityPowerCurrent = AbilityDefaultMax;
 			return base.ModifyNurseHeal(nurse, ref health, ref removeDebuffs, ref chatText);
 		}*/
+        public override void UpdateBiomes()
+        {
+			Lost_Halls = TheWorld.Lost_Blocks >= 50;
+        }
 
-		public override TagCompound Save()
+        public override bool CustomBiomesMatch(Player other)
+        {
+			ROTMGPlayer modOther = other.GetModPlayer<ROTMGPlayer>();
+			return Lost_Halls = modOther.Lost_Halls;
+        }
+
+        public override void CopyCustomBiomesTo(Player other)
+        {
+			ROTMGPlayer modOther = other.GetModPlayer<ROTMGPlayer>();
+			modOther.Lost_Halls = Lost_Halls;
+		}
+
+        public override void ReceiveCustomBiomes(BinaryReader reader)
+        {
+			BitsByte flags = reader.ReadByte();
+			Lost_Halls = flags[0];
+		}
+
+        public override Texture2D GetMapBackgroundImage()
+        {
+			if (Lost_Halls == true)
+			{
+				return mod.GetTexture("Backgrounds/Lost_Background");
+			}
+			else return null;
+        }
+        public override TagCompound Save()
 		{
 			// Read https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound to better understand Saving and Loading data.
 			return new TagCompound {
@@ -222,6 +280,7 @@ namespace ROTMG_Items
 				{"AbilityPowerRegen", AbilityPowerRegen},
 				{"AbilityPowerRegenTimer", AbilityPowerRegenTimer},
 				{"AbilityPowerRegenRate", AbilityPowerRegenRate},
+				{"moonded", moonded},
 			};
 		}
 		public override void Load(TagCompound tag)
@@ -248,6 +307,7 @@ namespace ROTMG_Items
 			AbilityPowerCurrent = tag.GetInt("AbilityPowerCurrent");
 			AbilityPowerRegenTimer = tag.GetFloat("AbilityPowerRegenTimer");
 			AbilityPowerRegenRate = tag.GetFloat("AbilityPowerRegenRate");
+			moonded = tag.GetBool("moonded");
 		}
 		public float Unstabled = Main.rand.Next(100) + 1f;
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

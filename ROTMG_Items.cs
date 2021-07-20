@@ -25,8 +25,9 @@ namespace ROTMG_Items
 
 
         private UserInterface _exampleUserInterface;
-
         internal UserInterface ExamplePersonUserInterface;
+
+
         internal StatUI StatUI;
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)

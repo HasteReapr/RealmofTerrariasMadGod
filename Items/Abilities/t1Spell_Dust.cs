@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System;
 
 namespace ROTMG_Items.Items.Abilities
 {
@@ -25,8 +26,17 @@ namespace ROTMG_Items.Items.Abilities
 		}
         public override void Kill(int timeLeft)
         {
+			float speed = 24;
+			Vector2 side = new Vector2((float)Math.Cos(45) / speed, (float)Math.Sin(45) / speed); // to define a Vector2 like this, you need to start with the variable name, and then after the = put New Vector2. If you don't do this, it won't work.
+			Vector2 side2 = new Vector2((float)Math.Cos(90) / speed, (float)Math.Sin(90) / speed);
+			Projectile.NewProjectile(projectile.position.X, projectile.position.Y, projectile.velocity.X, projectile.velocity.Y, mod.ProjectileType("t1Spell_Proj"), 10, 0f, projectile.owner, 0f, 0f);
 			Projectile.NewProjectile(projectile.position.X, projectile.position.Y, projectile.velocity.X * -1, projectile.velocity.Y * -1, mod.ProjectileType("t1Spell_Proj"), 10, 0f, projectile.owner, 0f, 0f);
-			Projectile.NewProjectile(projectile.rotation * 2f, projectile.rotation * 2f,projectile.velocity.X * -1, projectile.velocity.Y * -1, mod.ProjectileType("t1Spell_Proj"), 10, 0f, projectile.owner, 0f, 0f);
-			}
+
+			Projectile.NewProjectile(projectile.position, (side * -1) * (speed * 16), mod.ProjectileType("t1Spell_Proj"), 10, 0f, Main.myPlayer); // left
+			Projectile.NewProjectile(projectile.position, side * (speed * 16), mod.ProjectileType("t1Spell_Proj"), 10, 0f, Main.myPlayer);
+
+			Projectile.NewProjectile(projectile.position, (side2 * -1) * (speed * 16), mod.ProjectileType("t1Spell_Proj"), 10, 0f, Main.myPlayer); //right
+			Projectile.NewProjectile(projectile.position, side2 * (speed * 16), mod.ProjectileType("t1Spell_Proj"), 10, 0f, Main.myPlayer);
+		}
     }
 }

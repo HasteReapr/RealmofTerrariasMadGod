@@ -1,3 +1,5 @@
 displayName = Realm of Terraria's Mad God
 author = HasteReapr
 version = 1.7.2
+
+modReferences = SubworldLibrary
