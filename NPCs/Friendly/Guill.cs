@@ -138,39 +138,85 @@ namespace ROTMG_Items.NPCs.Friendly
 		{
 			if (Main.LocalPlayer.HasItem(ModContent.ItemType<GPotBag>())){
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<GDexPot>());
+				shop.item[nextSlot].shopCustomPrice = 10000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<GAttPot>());
+				shop.item[nextSlot].shopCustomPrice = 10000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<GSpdPot>());
+				shop.item[nextSlot].shopCustomPrice = 10000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<GDefPot>());
+				shop.item[nextSlot].shopCustomPrice = 10000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<GVitPot>());
+				shop.item[nextSlot].shopCustomPrice = 10000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<GWisPot>());
+				shop.item[nextSlot].shopCustomPrice = 10000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<GManaPot>());
+				shop.item[nextSlot].shopCustomPrice = 100000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<GLifePot>());
+				shop.item[nextSlot].shopCustomPrice = 100000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
 			}
 			else 
 			{
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<DexPot>());
+				shop.item[nextSlot].shopCustomPrice = 1000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<AttPot>());
+				shop.item[nextSlot].shopCustomPrice = 1000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<SpdPot>());
+				shop.item[nextSlot].shopCustomPrice = 1000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<DefPot>());
+				shop.item[nextSlot].shopCustomPrice = 1000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<VitPot>());
+				shop.item[nextSlot].shopCustomPrice = 1000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<WisPot>());
+				shop.item[nextSlot].shopCustomPrice = 1000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ManaPot>());
+				shop.item[nextSlot].shopCustomPrice = 10000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
+
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<LifePot>());
+				shop.item[nextSlot].shopCustomPrice = 10000;
+				shop.item[nextSlot].shopSpecialCurrency = ROTMG_Items.FaceCustomCurrencyId;
 				nextSlot++;
 			}
 			if (Main.LocalPlayer.HasBuff(ModContent.BuffType<Buffs.Healing>()))

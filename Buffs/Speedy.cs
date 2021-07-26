@@ -16,6 +16,8 @@ namespace ROTMG_Items.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.moveSpeed *= 1.35f;
+            player.maxRunSpeed *= 1.35f;
+            player.runAcceleration += .35f;
         }
     }
 }

@@ -32,6 +32,7 @@ namespace ROTMG_Items.Items.Abilities
 			item.autoReuse = false;
 			item.shoot = ModContent.ProjectileType<SkullAOE>();
 			item.shootSpeed = 24f;
+			isAbility = true;
 		}
 
 		public override void AddRecipes()

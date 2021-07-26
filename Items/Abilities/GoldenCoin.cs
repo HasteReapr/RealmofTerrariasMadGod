@@ -15,6 +15,7 @@ namespace ROTMG_Items.Items.Abilities
 			projectile.width = 24;
 			projectile.height = 32;
 			projectile.penetrate = -1;
+			projectile.tileCollide = false;
 		}
 
 		public float Timer = 60;

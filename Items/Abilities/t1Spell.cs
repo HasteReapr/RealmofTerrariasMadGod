@@ -32,6 +32,7 @@ namespace ROTMG_Items.Items.Abilities
 			item.autoReuse = false;
 			item.shoot = ModContent.ProjectileType<t1Spell_Dust>();
 			item.shootSpeed = 24f;
+			isAbility = true;
 		}
 	}
 }

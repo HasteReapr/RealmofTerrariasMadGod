@@ -43,6 +43,7 @@ namespace ROTMG_Items
 		}
         public override void NPCLoot(NPC npc)
 		{
+			Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Currency.XPDrop>(), 1);
 			if(NPC.downedPlantBoss == true)
             {
 				int acclaim = Main.rand.Next(300) + 1;

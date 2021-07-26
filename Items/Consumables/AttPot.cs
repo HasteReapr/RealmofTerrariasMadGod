@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ROTMG_Items.Items.Currency;
 
 namespace ROTMG_Items.Items.Consumables
 {

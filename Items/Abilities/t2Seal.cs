@@ -23,6 +23,7 @@ namespace ROTMG_Items.Items.Abilities
             AncientCost = 35;
             item.rare = ItemRarityID.Green;
             item.value = Item.buyPrice(gold: 1);
+            isAbility = true;
         }
 
         public override bool UseItem(Player player)

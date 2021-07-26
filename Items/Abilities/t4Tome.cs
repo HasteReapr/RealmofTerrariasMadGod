@@ -25,6 +25,7 @@ namespace ROTMG_Items.Items.Abilities
             item.buffType = ModContent.BuffType<Buffs.Healing>();
             item.buffTime = 300;
             item.value = Item.buyPrice(gold: 1);
+            isAbility = true;
         }
 
         public override bool UseItem(Player player)

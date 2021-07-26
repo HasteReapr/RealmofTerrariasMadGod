@@ -26,6 +26,7 @@ namespace ROTMG_Items.Items.Abilities
             item.value = Item.buyPrice(gold: 1);
             item.buffType = ModContent.BuffType<Buffs.RogueInvisible>();
             item.buffTime = 540;
+            isAbility = true;
         }
 
         public override void AddRecipes()

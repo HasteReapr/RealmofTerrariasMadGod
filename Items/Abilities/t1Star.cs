@@ -32,6 +32,7 @@ namespace ROTMG_Items.Items.Abilities
 			item.autoReuse = false;
 			item.shoot = ModContent.ProjectileType<t1StarProj>();
 			item.shootSpeed = 16f;
+			isAbility = true;
 		}
 
 		public override void AddRecipes()

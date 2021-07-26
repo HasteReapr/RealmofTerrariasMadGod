@@ -26,6 +26,7 @@ namespace ROTMG_Items.Items.Consumables
             item.consumable = true;
             item.rare = ItemRarityID.Orange;
             item.value = Item.buyPrice(gold: 1);
+            isAbility = false;
         }
 
         public override bool UseItem(Player player)
@@ -35,7 +36,7 @@ namespace ROTMG_Items.Items.Consumables
                 player.GetModPlayer<ROTMGPlayer>().AbilityPowerCurrent -= 35;
             } else
             player.GetModPlayer<ROTMGPlayer>().AbilityPowerCurrent += 75;
-            player.AddBuff(ModContent.BuffType<Buffs.AncientSickness>(), 600, false);
+            player.AddBuff(ModContent.BuffType<AncientSickness>(), 600, false);
             return true;
         }
 

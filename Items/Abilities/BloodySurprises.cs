@@ -27,6 +27,7 @@ namespace ROTMG_Items.Items.Abilities
             item.value = Item.buyPrice(gold: 1);
             item.buffType = ModContent.BuffType<RogueInvisible>();
             item.buffTime = 1200;
+            isAbility = true;
         }
 
         public override bool UseItem(Player player)

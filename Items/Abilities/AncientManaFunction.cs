@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -10,12 +9,14 @@ namespace ROTMG_Items.Items.Abilities
 		public override bool CloneNewInstances => true;
 		public int AncientCost = 0;
 		public int AncientHeal = 0;
+		public bool isAbility;
 		public virtual void SafeSetDefaults()
 		{
 		}
 
 		public override void SetDefaults()
 		{
+			isAbility = true;
 			SafeSetDefaults();
 		}
 
@@ -27,7 +28,7 @@ namespace ROTMG_Items.Items.Abilities
 			}
 		}
 
-		// Make sure you can't use the item if you don't have enough resource and then use 10 resource otherwise.
+		// Make sure you can't use the item if you don't have enough mana and then use the mana otherwise.
 		public override bool CanUseItem(Player player)
 		{
 			var exampleDamagePlayer = player.GetModPlayer<ROTMGPlayer>();

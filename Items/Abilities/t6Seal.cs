@@ -20,9 +20,10 @@ namespace ROTMG_Items.Items.Abilities
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.useAnimation = 15;
             item.useTime = 15;
-            AncientCost = 55;
+            AncientCost = 60;
             item.rare = ItemRarityID.Green;
             item.value = Item.buyPrice(gold: 1);
+            isAbility = true;
         }
 
         public override bool UseItem(Player player)

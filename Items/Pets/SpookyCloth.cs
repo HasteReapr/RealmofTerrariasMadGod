@@ -10,7 +10,7 @@ namespace ROTMG_Items.Items.Pets
 		public override void SetStaticDefaults()
 		{
 			// DisplayName and Tooltip are automatically set from the .lang files, but below is how it is done normally.
-			// DisplayName.SetDefault("Paper Airplane");
+			DisplayName.SetDefault("Spooky Cloth");
 			Tooltip.SetDefault("Summons a Spooky Boi to wander aimlessely around you.");
 		}
 

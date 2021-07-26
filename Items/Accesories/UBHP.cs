@@ -245,9 +245,10 @@ namespace ROTMG_Items.Items.Accesories
 			player.accRunSpeed += 30;
 			player.lifeRegen += 30000;
 			player.manaRegen += 30000;
-			modplayer.AbilityPowerMax = 90000;
-			modplayer.AbilityPowerRegenRate = 30000;
+			modplayer.AbilityPowerMax = 100000;
+			modplayer.AbilityPowerRegenRate *= 300000;
 			modplayer.AdminCrown = true;
+			modplayer.AbilityPowerCurrent = modplayer.AbilityPowerMax;
 			player.statDefense += 90000;
 			player.noKnockback = true;
 			player.wingTimeMax = 90000;

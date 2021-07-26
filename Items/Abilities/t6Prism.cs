@@ -34,6 +34,7 @@ namespace ROTMG_Items.Items.Abilities
 			item.autoReuse = false;
 			item.shoot = ModContent.ProjectileType<t6Decoy>();
 			item.shootSpeed = 16f;
+			isAbility = true;
 		}
 		public override bool AltFunctionUse(Player player)
 		{

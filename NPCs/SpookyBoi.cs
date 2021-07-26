@@ -95,7 +95,7 @@ namespace ROTMG_Items.NPCs
                 direction.Normalize();
                 Vector2 side = new Vector2((float)Math.Cos(45) / speed, (float)Math.Sin(45) / speed); // to define a Vector2 like this, you need to start with the variable name, and then after the = put New Vector2. If you don't do this, it won't work.
                 Vector2 side2 = new Vector2((float)Math.Cos(90) / speed, (float)Math.Sin(90) / speed);
-                npc.velocity = direction * 6f;
+                npc.velocity = direction * 8f;
                 if(!npc.HasValidTarget && Main.player[npc.target].Distance(npc.Center) < 1600f && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     AI_State = State_Wander;

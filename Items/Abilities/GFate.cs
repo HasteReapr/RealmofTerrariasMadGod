@@ -33,6 +33,7 @@ namespace ROTMG_Items.Items.Abilities
 			item.autoReuse = false;
 			item.shoot = ModContent.ProjectileType<CoinParticle>();
 			item.shootSpeed = 16f;
+			isAbility = true;
 		}
 	}
 }

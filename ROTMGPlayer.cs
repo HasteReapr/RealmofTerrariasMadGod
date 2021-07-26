@@ -1,24 +1,10 @@
-using ROTMG_Items;
 using ROTMG_Items.Buffs;
-using ROTMG_Items.Items;
-using ROTMG_Items.Items.Accesories;
 using Terraria;
-using Terraria.GameContent.Dyes;
-using Terraria.GameContent.UI;
-using Terraria.Graphics.Effects;
-using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.DataStructures;
-using Terraria.GameInput;
-using Terraria.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
-using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace ROTMG_Items
@@ -40,20 +26,6 @@ namespace ROTMG_Items
 		public bool SpookyPet;
 		public float PermIncrease;
 		public float GPermIncrease;
-		public int score;
-		public bool eFlames;
-		public int lockTime;
-		public int heroLives;
-		public int reviveTime;
-		public int constantDamage;
-		public float percentDamage;
-		public bool badHeal;
-		public int healHurt;
-		public bool infinity;
-		public bool strongBeesUpgrade;
-		public bool manaHeart;
-		public int manaHeartCounter;
-		public bool nonStopParty; // The value of this bool can't be calculated by other clients automatically since it is set in ExampleUI. This bool is synced by SendClientChanges.
 		public bool examplePersonGiftReceived;
 		public bool Unstable = false;
 		
@@ -138,14 +110,14 @@ namespace ROTMG_Items
 		public override void ResetEffects()
 		{
 			player.statLifeMax2 += LifePot * 20;
-			AbilityPowerRegenRate = 1f + WisPot * 0.65f;
+			AbilityPowerRegenRate = 1f + WisPot * 0.75f;
 			player.statDefense += DefPot * 1;
 			player.lifeRegen += VitPot * 1;
 			player.moveSpeed += SpdPot * 0.05f;
 			player.allDamage += AttPot * 0.05f;
 			player.statLifeMax2 += GLifePot * 20;
 			AbilityPowerMax = 100 + (GManaPot * 20) + (ManaPot * 20);
-			AbilityPowerRegenRate = 1f + GWisPot * 0.65f;
+			AbilityPowerRegenRate = 1f + GWisPot * 0.75f;
 			player.statDefense += GDefPot * 1;
 			player.lifeRegen += GVitPot * 1;
 			player.moveSpeed += GSpdPot * 0.05f;
@@ -166,7 +138,6 @@ namespace ROTMG_Items
 			ROTMGPlayer clone = clientClone as ROTMGPlayer;
 			// Here we would make a backup clone of values that are only correct on the local players Player instance.
 			// Some examples would be RPG stats from a GUI, Hotkey states, and Extra Item Slots
-			clone.nonStopParty = nonStopParty;
 			clone.player.statLifeMax2 += LifePot * 20;
 			clone.player.statDefense += DefPot * 1;
 			clone.player.lifeRegen += VitPot * 1;
@@ -184,24 +155,24 @@ namespace ROTMG_Items
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			ModPacket packet = mod.GetPacket();
-			packet.Write((byte)ROTMGModMessageType.ROTMGPlayerSyncPlayer);
+			packet.Write((byte)SyncPlayerMessage.Potions);
 			packet.Write((byte)player.whoAmI);
 			packet.Write(LifePot);
 			packet.Write(ManaPot);
+			packet.Write(DefPot);
+			packet.Write(AttPot);
+			packet.Write(DexPot);
+			packet.Write(SpdPot);
 			packet.Write(VitPot);
 			packet.Write(WisPot);
-			packet.Write(SpdPot);
-			packet.Write(DefPot);
-			packet.Write(DexPot);
-			packet.Write(AttPot);
 			packet.Write(GLifePot);
 			packet.Write(GManaPot);
+			packet.Write(GDefPot);
+			packet.Write(GAttPot);
+			packet.Write(GDexPot);
+			packet.Write(GSpdPot);
 			packet.Write(GVitPot);
 			packet.Write(GWisPot);
-			packet.Write(GSpdPot);
-			packet.Write(GDefPot);
-			packet.Write(GDexPot);
-			packet.Write(GAttPot);
 			packet.Write(AbilityPowerCurrent);
 			packet.Write(AbilityPowerMax);
 			packet.Write(AbilityPowerRegen);
@@ -209,7 +180,6 @@ namespace ROTMG_Items
 			packet.Write(AbilityPowerRegenRate);
 			packet.Write(moonded);
 			packet.Send(toWho, fromWho);
-
 		}
 		public override void SendClientChanges(ModPlayer clientPlayer)
 		{
@@ -244,7 +214,6 @@ namespace ROTMG_Items
 			BitsByte flags = reader.ReadByte();
 			Lost_Halls = flags[0];
 		}
-
         public override Texture2D GetMapBackgroundImage()
         {
 			if (Lost_Halls == true)
@@ -253,12 +222,12 @@ namespace ROTMG_Items
 			}
 			else return null;
         }
-        public override TagCompound Save()
+
+		public override TagCompound Save()
 		{
 			// Read https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound to better understand Saving and Loading data.
 			return new TagCompound {
 				// {"somethingelse", somethingelse}, // To save more data, add additional lines
-				{"score", score},
 				{"LifePot", LifePot},
 				{"ManaPot", ManaPot},
 				{"VitPot", VitPot},
@@ -285,7 +254,6 @@ namespace ROTMG_Items
 		}
 		public override void Load(TagCompound tag)
 		{
-			score = tag.GetInt("score");
 			LifePot = tag.GetInt("LifePot");
 			ManaPot = tag.GetInt("ManaPot");
 			VitPot = tag.GetInt("VitPot");
@@ -319,14 +287,9 @@ namespace ROTMG_Items
 			}
             return base.Shoot(item, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
         }
-        internal enum ROTMGModMessageType : byte
+        internal enum SyncPlayerMessage : byte
 		{
-			ROTMGPlayerSyncPlayer,
-			NonStopPartyChanged,
-			AbilityPowerMax,
-			AbilityPowerRegen,
-			AbilityPowerRegenTimer,
-			AbilityPowerRegenRate,
+			Potions,
 		}
 		// Ability power code. Don't fuck this up.
 		public int AbilityPowerCurrent;
@@ -344,14 +307,6 @@ namespace ROTMG_Items
 
 		public override void PostUpdate()
 		{
-
-			/*AbilityPowerRegenTimer++; // regenerates 
-			if (AbilityPowerRegenTimer > AbilityPowerRegen)
-			{
-				AbilityPowerCurrent += 4;
-				AbilityPowerRegenTimer = 0;
-			}
-			AbilityPowerCurrent = Utils.Clamp(AbilityPowerCurrent, 0, AbilityPowerMax);*/
 			HandleAP();
 		}
 		private void HandleAP()
@@ -385,18 +340,6 @@ namespace ROTMG_Items
 				return false;
             }
 			return true;
-		}
-		/*
-		 * public int XP = 0;
-		 * public int XPLevel = 1;
-		 * public int XPMax = 100;
-		 * 
-		 * if(XP == XPMax)
-		 *		{ 
-		 *			XP = 0;
-		 *			XPMax = (int)(XPMax * 1.5f);
-		 *			XPLevel +=1;
-		 *		}
-		 */
+		}		
 	}
 }

@@ -21,18 +21,20 @@ namespace ROTMG_Items.Items.Weapons.Projectiles
             projectile.ignoreWater = false;
             projectile.friendly = true;
             projectile.penetrate = -1;
-            projectile.timeLeft = 60;
+            projectile.timeLeft = 600;
         }
 
         public override void AI()
         {
+            // Lighting.AddLight(projectile.center, Color.colorname.ToVector3() * strength); where strength is how strong the lighting is.
+            Lighting.AddLight(projectile.Center, Color.Yellow.ToVector3() * (projectile.frame/2));
             projectile.velocity *= 0.001f;
             if (++projectile.frameCounter >= 3.75f)
             {
                 projectile.frameCounter = 0;
                 if (++projectile.frame >= 16)
                 {
-                    projectile.frame = 0;
+                    projectile.Kill();
                 }
             }
         }

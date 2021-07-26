@@ -18,6 +18,7 @@ namespace ROTMG_Items.Items.Abilities
 			projectile.friendly = true;
 			projectile.penetrate = 1000;
 			projectile.timeLeft = 1;
+			projectile.tileCollide = false;
 		}
 
 		public override void AI()

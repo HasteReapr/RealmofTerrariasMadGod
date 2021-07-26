@@ -23,6 +23,7 @@ namespace ROTMG_Items.Items.Weapons.Projectiles
 
 		public override void AI()
 		{
+			Lighting.AddLight(projectile.Center, 1, 1, 0);
 			projectile.velocity.Y += projectile.ai[0];
 			projectile.rotation = projectile.velocity.ToRotation();
 		}

@@ -1,32 +1,31 @@
 using Terraria;
-using Terraria.GameContent.Dyes;
 using Terraria.GameContent.UI;
-using Terraria.Graphics.Effects;
-using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using ROTMG_Items.UI;
 
 namespace ROTMG_Items
 {
-	public class ROTMG_Items : Mod
-	{
+    public class ROTMG_Items : Mod
+    {
+        public static ModHotKey AbilityHotKey;
+        public static ModHotKey ExpHotKey;
         public static DynamicSpriteFont exampleFont;
         private UserInterface _AbilityBarUserInterface;
-		internal AbilityPowerBar AbilityPowerBar;
+        internal AbilityPowerBar AbilityPowerBar;
+        public UserInterface _AbilitySlotUI;
+        internal AbilitySlotUI AbilitySlotUI;
 
+        //public static Texture2D CachedLogo = Main.logoTexture;
+
+        public static int FaceCustomCurrencyId;
 
         private UserInterface _exampleUserInterface;
         internal UserInterface ExamplePersonUserInterface;
-
 
         internal StatUI StatUI;
 
@@ -36,61 +35,96 @@ namespace ROTMG_Items
             switch (msgType)
             {
                 case ROTMGModMessageType.ROTMGPlayerSyncPlayer:
+
+                    SyncPlayerMessage submessage = (SyncPlayerMessage)reader.ReadByte();
                     byte playernumber = reader.ReadByte();
-                    ROTMGPlayer ROTMGPlayer = Main.player[playernumber].GetModPlayer<ROTMGPlayer>();
-                    int LifePot = reader.ReadInt32();
-                    int ManaPot = reader.ReadInt32();
-                    int DefPot = reader.ReadInt32();
-                    int AttPot = reader.ReadInt32();
-                    int DexPot = reader.ReadInt32();
-                    int SpdPot = reader.ReadInt32();
-                    int VitPot = reader.ReadInt32();
-                    int WisPot = reader.ReadInt32();
-                    int GLifePot = reader.ReadInt32();
-                    int GManaPot = reader.ReadInt32();
-                    int GDefPot = reader.ReadInt32();
-                    int GAttPot = reader.ReadInt32();
-                    int GDexPot = reader.ReadInt32();
-                    int GSpdPot = reader.ReadInt32();
-                    int GVitPot = reader.ReadInt32();
-                    int GWisPot = reader.ReadInt32();
-                    int AbilityPowerCurrent = reader.ReadInt32();
-                    int AbilityPowerMax = reader.ReadInt32();
-                    float AbilityPowerRegen = reader.ReadSingle();
-                    float AbilityPowerRegenTimer = reader.ReadSingle();
-                    float AbilityPowerRegenRate = reader.ReadSingle();
-                    ROTMGPlayer.AbilityPowerRegenRate = AbilityPowerRegenRate;
-                    ROTMGPlayer.AbilityPowerCurrent = AbilityPowerCurrent;
-                    ROTMGPlayer.AbilityPowerMax = AbilityPowerMax;
-                    ROTMGPlayer.AbilityPowerRegen = AbilityPowerRegen;
-                    ROTMGPlayer.AbilityPowerRegenTimer = AbilityPowerRegenTimer;
-                    ROTMGPlayer.LifePot = LifePot;
-                    ROTMGPlayer.ManaPot = ManaPot;
-                    ROTMGPlayer.DefPot = DefPot;
-                    ROTMGPlayer.AttPot = AttPot;
-                    ROTMGPlayer.DexPot = DexPot;
-                    ROTMGPlayer.SpdPot = SpdPot;
-                    ROTMGPlayer.VitPot = VitPot;
-                    ROTMGPlayer.WisPot = WisPot;
-                    ROTMGPlayer.GLifePot = GLifePot;
-                    ROTMGPlayer.GManaPot = GManaPot;
-                    ROTMGPlayer.GDefPot = GDefPot;
-                    ROTMGPlayer.GAttPot = GAttPot;
-                    ROTMGPlayer.GDexPot = GDexPot;
-                    ROTMGPlayer.GSpdPot = GSpdPot;
-                    ROTMGPlayer.GVitPot = GVitPot;
-                    ROTMGPlayer.GWisPot = GWisPot;
-                    // SyncPlayer will be called automatically, so there is no need to forward this data to other clients.
+                    switch (submessage)
+                    {
+                        case SyncPlayerMessage.XPOnly:
+                            XPFunction XPFunction = Main.player[playernumber].GetModPlayer<XPFunction>();
+                            int XP = reader.ReadInt32();
+                            int XPLevel = reader.ReadInt32();
+                            int XPMax = reader.ReadInt32();
+                            int LvlZeroDeaths = reader.ReadInt32();
+                            int XPTotal = reader.ReadInt32();
+                            XPFunction.XP = XP;
+                            XPFunction.XPLevel = XPLevel;
+                            XPFunction.XPMax = XPMax;
+                            XPFunction.LvlZeroDeaths = LvlZeroDeaths;
+                            XPFunction.XPTotal = XPTotal;
+                            break;
+                        case SyncPlayerMessage.Potions:
+                            ROTMGPlayer ROTMGPlayer = Main.player[playernumber].GetModPlayer<ROTMGPlayer>();
+                            int LifePot = reader.ReadInt32();
+                            int ManaPot = reader.ReadInt32();
+                            int DefPot = reader.ReadInt32();
+                            int AttPot = reader.ReadInt32();
+                            int DexPot = reader.ReadInt32();
+                            int SpdPot = reader.ReadInt32();
+                            int VitPot = reader.ReadInt32();
+                            int WisPot = reader.ReadInt32();
+                            int GLifePot = reader.ReadInt32();
+                            int GManaPot = reader.ReadInt32();
+                            int GDefPot = reader.ReadInt32();
+                            int GAttPot = reader.ReadInt32();
+                            int GDexPot = reader.ReadInt32();
+                            int GSpdPot = reader.ReadInt32();
+                            int GVitPot = reader.ReadInt32();
+                            int GWisPot = reader.ReadInt32();
+                            int AbilityPowerCurrent = reader.ReadInt32();
+                            int AbilityPowerMax = reader.ReadInt32();
+                            float AbilityPowerRegen = reader.ReadSingle();
+                            float AbilityPowerRegenTimer = reader.ReadSingle();
+                            float AbilityPowerRegenRate = reader.ReadSingle();
+                            bool moonded = reader.ReadBoolean();
+
+
+                            ROTMGPlayer.LifePot = LifePot;
+                            ROTMGPlayer.ManaPot = ManaPot;
+                            ROTMGPlayer.DefPot = DefPot;
+                            ROTMGPlayer.AttPot = AttPot;
+                            ROTMGPlayer.DexPot = DexPot;
+                            ROTMGPlayer.SpdPot = SpdPot;
+                            ROTMGPlayer.VitPot = VitPot;
+                            ROTMGPlayer.WisPot = WisPot;
+                            ROTMGPlayer.GLifePot = GLifePot;
+                            ROTMGPlayer.GManaPot = GManaPot;
+                            ROTMGPlayer.GDefPot = GDefPot;
+                            ROTMGPlayer.GAttPot = GAttPot;
+                            ROTMGPlayer.GDexPot = GDexPot;
+                            ROTMGPlayer.GSpdPot = GSpdPot;
+                            ROTMGPlayer.GVitPot = GVitPot;
+                            ROTMGPlayer.GWisPot = GWisPot;
+                            ROTMGPlayer.AbilityPowerCurrent = AbilityPowerCurrent;
+                            ROTMGPlayer.AbilityPowerMax = AbilityPowerMax;
+                            ROTMGPlayer.AbilityPowerRegen = AbilityPowerRegen;
+                            ROTMGPlayer.AbilityPowerRegenTimer = AbilityPowerRegenTimer;
+                            ROTMGPlayer.AbilityPowerRegenRate = AbilityPowerRegenRate;
+                            ROTMGPlayer.moonded = moonded;
+                            break;
+                        case SyncPlayerMessage.Pets:
+                            PetPlayer PetPlayer = Main.player[playernumber].GetModPlayer<PetPlayer>();
+                            bool SpritePet = reader.ReadBoolean();
+                            PetPlayer.SpritePet = SpritePet;
+                            break;
+                    }
                     break;
             }
         }
         public override void Load()
-            {
+        {
+            FaceCustomCurrencyId = CustomCurrencyManager.RegisterCurrency(new Items.Currency.FameCurrency(ModContent.ItemType<Items.Currency.Fame>(), 1000000L));
+
+            //Main.logoTexture = GetTexture("ROTMG_ItemsLogo");
+
+            AbilityHotKey = RegisterHotKey("Ability Hot Key", "P");
+            ExpHotKey = RegisterHotKey("Experience Hot Key", ";");
             if (!Main.dedServ)
             {
                 AbilityPowerBar = new AbilityPowerBar();
                 _AbilityBarUserInterface = new UserInterface();
                 _AbilityBarUserInterface.SetState(AbilityPowerBar);
+
 
                 if (FontExists("Fonts/ExampleFont"))
                     exampleFont = GetFont("Fonts/ExampleFont");
@@ -99,6 +133,10 @@ namespace ROTMG_Items
                 StatUI.Activate();
                 _exampleUserInterface = new UserInterface();
                 _exampleUserInterface.SetState(StatUI);
+
+                AbilitySlotUI = new AbilitySlotUI();
+                _AbilitySlotUI = new UserInterface();
+                _AbilitySlotUI.SetState(AbilitySlotUI);
             }
 
         }
@@ -109,6 +147,15 @@ namespace ROTMG_Items
                 _exampleUserInterface?.Update(gameTime);
             }
             _AbilityBarUserInterface?.Update(gameTime);
+
+            if (!Main.playerInventory)
+            {
+                ModContent.GetInstance<ROTMG_Items>()._AbilitySlotUI.SetState(null);
+            }
+            else if (Main.playerInventory)
+            {
+                ModContent.GetInstance<ROTMG_Items>()._AbilitySlotUI.SetState(AbilitySlotUI);
+            }
         }
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
@@ -120,8 +167,23 @@ namespace ROTMG_Items
             {
                 layers.Insert(resourceBarIndex, new LegacyGameInterfaceLayer(
                     "ROTMG_Items: Ability Power Bar",
-                    delegate {
+                    delegate
+                    {
                         _AbilityBarUserInterface.Draw(Main.spriteBatch, new GameTime());
+                        return true;
+                    },
+                    InterfaceScaleType.UI)
+                );
+            }
+
+            int abilityslotUI_ = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
+            if (abilityslotUI_ != -1)
+            {
+                layers.Insert(abilityslotUI_, new LegacyGameInterfaceLayer(
+                    "ROTMG_Items: Ability Item Slot",
+                    delegate
+                    {
+                        _AbilitySlotUI.Draw(Main.spriteBatch, new GameTime());
                         return true;
                     },
                     InterfaceScaleType.UI)
@@ -132,7 +194,8 @@ namespace ROTMG_Items
             {
                 layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
                     "ExampleMod: Coins Per Minute",
-                    delegate {
+                    delegate
+                    {
                         if (StatUI.Visible)
                         {
                             _exampleUserInterface.Draw(Main.spriteBatch, new GameTime());
@@ -143,15 +206,29 @@ namespace ROTMG_Items
                 );
             }
         }
+        public override void Unload()
+        {
+            //Main.logoTexture = CachedLogo;
+            AbilityHotKey = null;
+            ExpHotKey = null;
+        }
         internal enum ROTMGModMessageType : byte
         {
             ROTMGPlayerSyncPlayer,
+            SyncPlayerMessage,
             NonStopPartyChanged,
             AbilityPowerMax,
             AbilityPowerMax2,
             AbilityPowerRegen,
             AbilityPowerRegenTimer,
             AbilityPowerRegenRate,
+        }
+
+        internal enum SyncPlayerMessage : byte
+        {
+            XPOnly,
+            Potions,
+            Pets,
         }
     }
 }

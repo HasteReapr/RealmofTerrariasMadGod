@@ -12,8 +12,8 @@ namespace ROTMG_Items.Items.Abilities
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Goblin Skull");
-			Tooltip.SetDefault("A skull taken from a goblin, just don't show it to the tinkerer...\nHeal 45% of the damage you do.");
+			DisplayName.SetDefault("Spiral Shuriken");
+			Tooltip.SetDefault("A complex shuriken design that is designed spin fast.");
 		}
 
 		public override void SetDefaults()
@@ -32,6 +32,7 @@ namespace ROTMG_Items.Items.Abilities
 			item.autoReuse = false;
 			item.shoot = ModContent.ProjectileType<t2StarProj>();
 			item.shootSpeed = 16f;
+			isAbility = true;
 		}
 
 		public override void AddRecipes()

@@ -25,17 +25,18 @@ namespace ROTMG_Items.Items.Abilities
             item.rare = ItemRarityID.Expert;
             item.value = Item.buyPrice(gold: 1);
             item.buffType = ModContent.BuffType<Buffs.Armored>();
-            item.buffTime = 780;
+            item.buffTime = 1560;
+            isAbility = true;
             // https://luna.komica.org/23/src/1624551667654.webm
         }
 
         public override bool UseItem(Player player)
         {
-            player.AddBuff(ModContent.BuffType<Buffs.WarrBuff>(), 780);
+            player.AddBuff(ModContent.BuffType<Buffs.WarrBuff>(), 1560);
             for (int i = 0; i < Main.maxPlayers; i++)
                 if (Main.player[i].active && Main.player[i].team == player.team && player.team != 0)
                 {
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.WarrBuff>(), 780, false);
+                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.WarrBuff>(), 1560, false);
                 }
             return true;
         }

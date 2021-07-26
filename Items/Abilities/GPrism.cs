@@ -34,6 +34,7 @@ namespace ROTMG_Items.Items.Abilities
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = false;
 			item.shootSpeed = 0.01f;
+			isAbility = true;
 		}
 		public float TeleportWait = 0;
 		public override bool AltFunctionUse(Player player)
