@@ -6,6 +6,7 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
+using ROTMG_Items;
 
 namespace ROTMG_Items
 {
@@ -155,6 +156,7 @@ namespace ROTMG_Items
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			ModPacket packet = mod.GetPacket();
+			packet.Write((byte)ROTMGModMessageType.ROTMGPlayerSyncPlayer);
 			packet.Write((byte)SyncPlayerMessage.Potions);
 			packet.Write((byte)player.whoAmI);
 			packet.Write(LifePot);
@@ -290,6 +292,17 @@ namespace ROTMG_Items
         internal enum SyncPlayerMessage : byte
 		{
 			Potions,
+		}
+		internal enum ROTMGModMessageType : byte
+		{
+			ROTMGPlayerSyncPlayer,
+			SyncPlayerMessage,
+			NonStopPartyChanged,
+			AbilityPowerMax,
+			AbilityPowerMax2,
+			AbilityPowerRegen,
+			AbilityPowerRegenTimer,
+			AbilityPowerRegenRate,
 		}
 		// Ability power code. Don't fuck this up.
 		public int AbilityPowerCurrent;

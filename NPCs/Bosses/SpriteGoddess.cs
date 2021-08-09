@@ -31,13 +31,12 @@ namespace ROTMG_Items.NPCs.Bosses
 
         private const int AI_State_Slot = 0;
 
-        private int State_Choose = 1;
-        private int State_Red = 2;
-        private int State_Blue = 3;
-        private int State_Green = 4;
-        private int State_Teal = 5;
-        private int State_Black = 6;
-        private bool initialphase;
+        private int State_Choose = 0;
+        private int State_Red = 1;
+        private int State_Blue = 2;
+        private int State_Green = 3;
+        private int State_Teal = 4;
+        private int State_Black = 5;
 
 
         public float AI_State
@@ -45,16 +44,12 @@ namespace ROTMG_Items.NPCs.Bosses
             get => npc.ai[AI_State_Slot];
             set => npc.ai[AI_State_Slot] = value;
         }
-        private int testtimer = 180;
+        private int timer = 180;
         private int phasechooser = Main.rand.Next(1,5) + 1;
         public override void AI()
         {
-            if(initialphase == false)
-            {
-                AI_State = State_Choose;
-                initialphase = true;
-            }
-            testtimer--;
+            npc.TargetClosest(true);
+            timer--;
             if (AI_State == State_Choose)
             {
                 Main.NewText("State Choose");
@@ -87,9 +82,11 @@ namespace ROTMG_Items.NPCs.Bosses
                 Lighting.AddLight(npc.Center, Color.Red.ToVector3() * 2);
                 Main.NewText("State Red");
                 npc.color = Color.Red;
-                if(testtimer >= 0)
+                npc.velocity = npc.velocity.RotatedBy(-MathHelper.Pi / 8);
+                if (timer <= 0)
                 {
                     AI_State = State_Choose;
+                    timer = 180;
                 }
             }
 
@@ -98,9 +95,10 @@ namespace ROTMG_Items.NPCs.Bosses
                 Lighting.AddLight(npc.Center, Color.Blue.ToVector3() * 2);
                 Main.NewText("State Blue");
                 npc.color = Color.Blue;
-                if (testtimer >= 0)
+                if (timer <= 0)
                 {
                     AI_State = State_Choose;
+                    timer = 180;
                 }
             }
 
@@ -109,9 +107,10 @@ namespace ROTMG_Items.NPCs.Bosses
                 Lighting.AddLight(npc.Center, Color.Green.ToVector3() * 2);
                 Main.NewText("State Green");
                 npc.color = Color.Green;
-                if (testtimer >= 0)
+                if (timer <= 0)
                 {
                     AI_State = State_Choose;
+                    timer = 180;
                 }
             }
 
@@ -120,41 +119,33 @@ namespace ROTMG_Items.NPCs.Bosses
                 Lighting.AddLight(npc.Center, Color.Teal.ToVector3() * 2);
                 Main.NewText("State Teal");
                 npc.color = Color.Teal;
-                if (testtimer >= 0)
+                if (timer <= 0)
                 {
                     AI_State = State_Choose;
+                    timer = 180;
                 }
             }
 
             if (AI_State == State_Black)
             {
+                Vector2 position = npc.Center;
+                Vector2 targetPosition = Main.player[npc.target].Center;
+                Vector2 direction = targetPosition - position;
+                direction.Normalize();
                 Lighting.AddLight(npc.Center, Color.Black.ToVector3() * 2);
                 Main.NewText("State Black");
-                npc.color = Color.Black;
-                if (testtimer >= 0)
+                npc.velocity = direction * 8;
+                npc.color = Color.Gray;
+                if (timer <= 0)
                 {
                     AI_State = State_Choose;
+                    timer = 180;
                 }
             }
         }
 
         private const int Sprite_walk1 = 0;
         private const int Sprite_walk2 = 1;
-
-        private const int Sprite_walk1_red = 0;
-        private const int Sprite_walk2_red = 1;
-
-        private const int Sprite_walk1_blue = 0;
-        private const int Sprite_walk2_blue = 1;
-
-        private const int Sprite_walk1_green = 0;
-        private const int Sprite_walk2_green = 1;
-
-        private const int Sprite_walk1_teal = 0;
-        private const int Sprite_walk2_teal = 1;
-
-        private const int Sprite_walk1_black = 0;
-        private const int Sprite_walk2_black = 1;
         public override void FindFrame(int frameHeight)
         {
             npc.frameCounter++;

@@ -83,7 +83,7 @@ namespace ROTMG_Items.NPCs.Friendly
 
 		public override string TownNPCName()
 		{
-			return "Guill";
+			return "";
 		}
 
 		public override void FindFrame(int frameHeight)

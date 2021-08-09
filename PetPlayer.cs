@@ -21,10 +21,22 @@ namespace ROTMG_Items
             Pets,
             SpritePet,
         }
+        internal enum ROTMGModMessageType : byte
+        {
+            ROTMGPlayerSyncPlayer,
+            SyncPlayerMessage,
+            NonStopPartyChanged,
+            AbilityPowerMax,
+            AbilityPowerMax2,
+            AbilityPowerRegen,
+            AbilityPowerRegenTimer,
+            AbilityPowerRegenRate,
+        }
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
             ModPacket packet = mod.GetPacket();
+            packet.Write((byte)ROTMGModMessageType.ROTMGPlayerSyncPlayer);
             packet.Write((byte)SyncPlayerMessage.Pets);
             packet.Write((byte)player.whoAmI);
             packet.Write(SpritePet);

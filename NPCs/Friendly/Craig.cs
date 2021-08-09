@@ -162,7 +162,7 @@ namespace ROTMG_Items.NPCs.Friendly
 
 		public override string TownNPCName()
 		{
-			return "Craig";
+			return "";
 		}
 
 		// Consider using this alternate approach to choosing a random thing. Very useful for a variety of use cases.
