@@ -19,6 +19,7 @@ namespace ROTMG_Items.Items.SubWorlds
             item.width = 34;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.maxStack = 1;
+            item.consumable = true;
         }
 
         public override bool UseItem(Player player)
@@ -34,7 +35,8 @@ namespace ROTMG_Items.Items.SubWorlds
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.DirtBlock, 10);
+            recipe.AddIngredient(ItemID.Marble, 10);
+            recipe.AddIngredient(ItemID.SoulofNight, 5);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -11,8 +11,8 @@ namespace ROTMG_Items.Items.Weapons.Projectiles
 	public class Colo_ShotUp : ModProjectile
 	{
 		public override void SetDefaults() {
-			projectile.width = 16;
-			projectile.height = 16;
+			projectile.width = 54;
+			projectile.height = 14;
 			projectile.friendly = true;
 			projectile.penetrate = 1;
 			projectile.timeLeft = 65;

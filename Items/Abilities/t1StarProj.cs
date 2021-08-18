@@ -13,7 +13,6 @@ namespace ROTMG_Items.Items.Abilities
 	{
 		public override void SetDefaults()
 		{
-			projectile.frameCounter = 7;
 			projectile.width = 34;
 			projectile.height = 34;
 			projectile.friendly = true;
@@ -25,7 +24,7 @@ namespace ROTMG_Items.Items.Abilities
 
 		public override void AI()
 		{
-			projectile.rotation = projectile.timeLeft*2;
+			projectile.rotation = projectile.timeLeft * 2;
 		}
 	}
 }

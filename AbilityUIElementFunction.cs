@@ -555,6 +555,79 @@ namespace ROTMG_Items
                     buffType5 = -1;
                 }
 
+                else if(ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<t1Star>())
+                {
+                    projectileType = ModContent.ProjectileType<t1StarProj>();
+                    UseCost = 20;
+                    Damage = 40;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<t2Star>())
+                {
+                    projectileType = ModContent.ProjectileType<t2StarProj>();
+                    UseCost = 30;
+                    Damage = 80;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<t3Star>())
+                {
+                    projectileType = ModContent.ProjectileType<t3StarProj>();
+                    UseCost = 40;
+                    Damage = 140;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<t4Star>())
+                {
+                    projectileType = ModContent.ProjectileType<t4StarProj>();
+                    UseCost = 50;
+                    Damage = 260;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<t5Star>())
+                {
+                    projectileType = ModContent.ProjectileType<t5StarProj>();
+                    UseCost = 50;
+                    Damage = 500;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<t6Star>())
+                {
+                    projectileType = ModContent.ProjectileType<t6StarProj>();
+                    UseCost = 50;
+                    Damage = 980;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                }
+
+                //Dunno why the team effects aren't applied here. I used the same code as the items.
                 if (player.GetModPlayer<ROTMGPlayer>().AbilityPowerCurrent >= UseCost)
                 {
                     player.statLife += healing;

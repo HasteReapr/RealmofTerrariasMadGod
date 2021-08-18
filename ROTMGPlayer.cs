@@ -353,6 +353,19 @@ namespace ROTMG_Items
 				return false;
             }
 			return true;
-		}		
-	}
+		}
+
+        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+			if(player.HasBuff(ModContent.BuffType<VoidSickness>()))
+            {
+				damageSource = PlayerDeathReason.ByCustomReason($"{nameof(player)} was consumed by the void.");
+				return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
+			}
+            else
+            {
+				return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
+			}
+        }
+    }
 }

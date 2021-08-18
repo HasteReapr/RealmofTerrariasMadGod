@@ -19,7 +19,7 @@ namespace ROTMG_Items.Items.Abilities
 		public override void SetDefaults()
 		{
 			item.damage = 500;
-			AncientCost = 40;
+			AncientCost = 50;
 			item.width = 40;
 			item.height = 40;
 			item.useTime = 14;

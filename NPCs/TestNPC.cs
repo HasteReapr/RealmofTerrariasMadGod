@@ -51,87 +51,149 @@ namespace ROTMG_Items.NPCs
         public float Timer = 250;
         public float wanderrand = Main.rand.Next(2) + 1;
         public float Jump_Cooldown;
+        public float Spot_WaitTime = 120;
         public override void AI()
         {
+            npc.TargetClosest(true);
             Vector2 position = npc.Center;
             Vector2 targetPosition = Main.player[npc.target].Center;
             Vector2 direction = targetPosition - position;
             direction.Normalize();
+            if (Main.player[npc.target].Distance(npc.Center) <= 80f)
+            {
+                Spot_WaitTime--;
+                npc.velocity = new Vector2(0, 0);
+                if (Spot_WaitTime <= 0 && Jump_Cooldown <= 0 && Main.player[npc.target].Distance(npc.Center) <= 160f)
+                {
+                    AI_State = State_Lunge;
+                    Timer = 60;
+                }
+                else
+                {
+                    AI_State = State_Wander;
+                    Timer = Main.rand.Next(240, 480);
+                    Spot_WaitTime = 120;
+                }
+            }
+
             if (AI_State == State_Wander)
             {
-                if (npc.HasValidTarget && Main.player[npc.target].Distance(npc.Center) < 160f)
+                Jump_Cooldown--;
+                if (wanderrand == 1)
+                {
+                    npc.direction = 1;
+                    Timer--;
+                    npc.velocity.X = 4;
+                    if (Timer <= 0)
+                    {
+                        AI_State = State_Wander;
+                        wanderrand = Main.rand.Next(2) + 1;
+                        Timer = Main.rand.Next(240, 480);
+                    }
+                }
+                else if (wanderrand == 2)
+                {
+                    npc.direction = -1;
+                    Timer--;
+                    npc.velocity.X = -4;
+                    if (Timer <= 0)
+                    {
+                        wanderrand = Main.rand.Next(2) + 1;
+                        AI_State = State_Wander;
+                        Timer = Main.rand.Next(240, 480);
+                    }
+                }
+            }
+
+
+            else if(AI_State == State_Lunge)
+            {
+                Timer--;
+                npc.velocity = direction * 4;
+                if(Timer <= 0)
+                {
+                    Jump_Cooldown = Main.rand.Next(600, 900);
+                    AI_State = State_Wander;
+                    Timer = Main.rand.Next(240, 480);
+                }
+            }
+        }
+
+
+
+            /*if (npc.HasValidTarget && Main.player[npc.target].Distance(npc.Center) <= 80f)
+            {
+                if (Jump_Cooldown <= 0)
                 {
                     AI_State = State_Spot;
                     Timer = 180;
                 }
-                if (wanderrand == 1) {
-                    npc.direction = 1;
-                    if (npc.HasValidTarget && Main.player[npc.target].Distance(npc.Center) < 160f)
-                    {
-                        AI_State = State_Spot;
-                        Timer = 180;
-                    }else
-                Timer--;
-                npc.velocity.X = 1f;
-                    if (Timer <= 10)
-                    {
-                        Timer = Main.rand.Next(250, 490);
-                        wanderrand = Main.rand.Next(2) + 1;
-                        AI_State = State_Wander;
-                    }
+                else
+                {
+                    AI_State = State_Wander;
                 }
-
-
-                if (wanderrand == 2) {
-                npc.direction = -1;
-                    if (npc.HasValidTarget && Main.player[npc.target].Distance(npc.Center) < 160f)
-                    {
-                        AI_State = State_Spot;
-                        Timer = 180;
-                    }else
-                    Timer--;
-                npc.velocity.X = -1f;
-                    if (Timer <= 10)
-                    {
-                        wanderrand = Main.rand.Next(2) + 1;
-                        Timer = Main.rand.Next(250, 490);
-                        AI_State = State_Wander;
-                    }
-                   
-
-                }
-
-
-                else if (AI_State == State_Spot)
+            }
+            if (AI_State == State_Wander)
+            {
+                if (wanderrand == 1)
                 {
                     Timer--;
-                    npc.velocity.X = 0;
-                    if (Timer == 150 && Main.player[npc.target].Distance(npc.Center) <= 160f)
+                    npc.velocity.X = 4f;
+                    if (Timer <= 0)
                     {
-                        AI_State = State_Lunge;
-                        Timer = 30;
+                        Timer = Main.rand.Next(250, 490);
+                        wanderrand = Main.rand.Next(2) + 1;
+                        AI_State = State_Wander;
                     }
-                    else if (Timer <= 100)
+                }
+                if (wanderrand == 2)
+                {
+                    npc.direction = -1;
+                    Timer--;
+                    npc.velocity.X = -4f;
+                    if (Timer <= 0)
                     {
-                        npc.TargetClosest(true);
-                        if (!npc.HasValidTarget || Main.player[npc.target].Distance(npc.Center) <= 500f)
-                        {
-                            AI_State = State_Wander;
-                            Timer = 180;
-                        }
+                        wanderrand = Main.rand.Next(2) + 1;
+                        Timer = Main.rand.Next(250, 490);
+                        AI_State = State_Wander;
+                    }
+
+
+                }
+            }
+            else if (AI_State == State_Spot)
+            {
+                Timer--;
+                npc.velocity = new Vector2(0, 0);
+                if (Timer == 150 && Main.player[npc.target].Distance(npc.Center) <= 80f)
+                {
+                    AI_State = State_Lunge;
+                    Timer = 60;
+                }
+                else if (Timer <= 100)
+                {
+                    if (!npc.HasValidTarget || Main.player[npc.target].Distance(npc.Center) >= 160f)
+                    {
+                        AI_State = State_Wander;
+                        Timer = 180;
                     }
                 }
             }
-            else if (AI_State == State_Lunge) {
+            else if (AI_State == State_Lunge)
+            {
                 Timer--;
-                npc.velocity = direction * 8f;
-                if (Timer == 0)
+                npc.velocity = direction * 6f;
+                if (Timer <= 0)
                 {
                     AI_State = State_Wander;
                     Timer = 180;
+                    Jump_Cooldown = 600;
                 }
             }
-        } //NPC.downedPlantBoss
+        }*/ //NPC.downedPlantBoss
+
+
+
 
         private int KnightWalk_1 = 0;
         private int KnightWalk_2 = 1;
