@@ -1,14 +1,14 @@
-﻿using ROTMG_Items.Items;
-using Microsoft.Xna.Framework;
+﻿using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
+using Microsoft.Xna.Framework;
 
 namespace ROTMG_Items.Items.Abilities
 {
 	public class t1Spell_Dust : ModProjectile
 	{
+		public override string Texture => "ROTMG_Items/Items/Abilities/t1Spell_Proj";
 		public override void SetDefaults()
 		{
 			projectile.width = 16;

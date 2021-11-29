@@ -18,7 +18,22 @@ namespace ROTMG_Items.Items.Abilities
 			projectile.magic = true;
 			projectile.penetrate = 1;
 			projectile.timeLeft = 30;
-			projectile.penetrate = 4;
+			if (projectile.ai[1] == 0)
+			{
+				projectile.penetrate = 4;
+			}
+			else if(projectile.ai[1] == 1)
+            {
+				projectile.penetrate = 6;
+            }
+			else if(projectile.ai[1] == 2)
+            {
+				projectile.penetrate = 9;
+            }
+			else if(projectile.ai[1] == 3)
+            {
+				projectile.penetrate = 12;
+            }
 			projectile.tileCollide = false;
 		}
 

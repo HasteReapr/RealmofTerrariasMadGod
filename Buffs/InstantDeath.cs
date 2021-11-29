@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ROTMG_Items.Buffs
 {
@@ -17,13 +18,14 @@ namespace ROTMG_Items.Buffs
         public override void Update(NPC npc, ref int buffIndex)
         {
             Main.NewText("Instant death was applied.");
-            npc.StrikeNPC(10, 0, 0, false, false, false);
+            npc.StrikeNPC(999999999, 0, 0, false, false, false);
             npc.life = 0;
         }
 
         public override void Update(Player player, ref int buffIndex)
         {
             player.statLife = 0;
+            player.Hurt(PlayerDeathReason.ByCustomReason($"{player.name} was deleted."), int.MaxValue, 0);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace ROTMG_Items.Items.Abilities
 				item.useStyle = ItemUseStyleID.HoldingUp;
 				item.useTime = 30;
 				item.useAnimation = 30;
-				player.Hurt(PlayerDeathReason.ByCustomReason("Teleportation greed."), (int)(player.statLifeMax2 * .25f), 0, false, false, false, -1);
+				player.Hurt(PlayerDeathReason.ByCustomReason($"{player.name} was too greedy."), (int)(player.statLifeMax2 * 0.25f), 0);
 				player.Teleport(Main.MouseWorld);
 			}
 			return base.CanUseItem(player);

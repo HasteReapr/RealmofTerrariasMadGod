@@ -13,32 +13,37 @@ namespace ROTMG_Items.Items.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Doom Bow"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-			Tooltip.SetDefault("No mortal can fire this dreaded bow without resting in between shots. It requires tremendous skill to wield.");
+			DisplayName.SetDefault("Dread Bow"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
+			Tooltip.SetDefault("A bow carried by the most fierce undead archers. It is tremendously powerful, but very large and awkward to use.\nTurns normal arrows into Dreadful Arrows.");
 		}
 
 		public override void SetDefaults()
 		{
-			item.damage = 4500;
+			item.damage = 300;
 			item.ranged = true;
 			item.noMelee = true;
-			item.width = 40;
-			item.height = 40;
-			item.useTime = 90;
-			item.useAnimation = 12;
+			item.width = 48;
+			item.height = 80;
+			item.useTime = 60;
+			item.useAnimation = 60;
 			item.useStyle = ItemUseStyleID.HoldingOut;
-			item.knockBack = 3;
-			item.value = 5000000;
-			item.rare = ItemRarityID.Expert;
+			item.UseSound = SoundID.Item5;
+			item.knockBack = 20;
+			item.value = 100000;
+			item.rare = ItemRarityID.Purple;
 			item.autoReuse = true;
-			item.shoot = ModContent.ProjectileType<DBow_Arrow>();
-			item.shootSpeed = 32f;
+			item.shoot = ProjectileID.WoodenArrowFriendly;
+			item.shootSpeed = 16f;
+			item.useAmmo = AmmoID.Arrow;
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockBack, player.whoAmI);
-			return false;
+			if (type == ProjectileID.WoodenArrowFriendly)
+				{
+					type = ModContent.ProjectileType<DBow_Arrow>();
+				}
+			return true;
 		}
 	}
 }

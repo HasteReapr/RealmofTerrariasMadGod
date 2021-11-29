@@ -10,7 +10,7 @@ namespace ROTMG_Items.Items.SubWorlds
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Test World Key");
-            Tooltip.SetDefault("Teleports you to the Testing Subworld.");
+            Tooltip.SetDefault("Admin Item\nTeleports you to the Testing Subworld.");
         }
 
         public override void SetDefaults()
@@ -19,6 +19,7 @@ namespace ROTMG_Items.Items.SubWorlds
             item.width = 34;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.maxStack = 1;
+            item.consumable = false;
         }
 
         public override bool UseItem(Player player)

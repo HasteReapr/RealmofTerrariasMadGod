@@ -10,16 +10,19 @@ namespace ROTMG_Items
     class PetPlayer : ModPlayer
     {
         public bool SpritePet;
+        public bool Stonepet;
 
         public override void ResetEffects()
         {
             SpritePet = false;
+            Stonepet = false;
         }
 
         internal enum SyncPlayerMessage : byte
         {
             Pets,
             SpritePet,
+            Stonepet,
         }
         internal enum ROTMGModMessageType : byte
         {
@@ -47,12 +50,14 @@ namespace ROTMG_Items
             return new TagCompound
             {
                 {"SpritePet", SpritePet},
+                {"StonePet", Stonepet }
             };
         }
 
         public override void Load(TagCompound tag)
         {
             SpritePet = tag.GetBool("SpritePet");
+            Stonepet = tag.GetBool("Stonepet");
         }
     }
 }

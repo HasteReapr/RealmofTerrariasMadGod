@@ -20,7 +20,7 @@ namespace ROTMG_Items.Tiles
 			
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Prismatic Shard");
-			AddMapEntry(new Color(152, 171, 198), name);
+			AddMapEntry(new Color(171, 63, 218), name);
 
 			minPick = 65;
 			dustType = 84;

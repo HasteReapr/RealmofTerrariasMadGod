@@ -25,6 +25,7 @@ namespace ROTMG_Items.Items.Abilities
 
 		public override void Kill(int timeLeft)
 		{
+			Main.PlaySound(SoundID.Item62, projectile.position);
 			Projectile.NewProjectile(projectile.position.X, projectile.position.Y, projectile.velocity.X, projectile.velocity.Y, mod.ProjectileType("GhostlyExplosion"), 2000, 30f, projectile.owner, 0f, 0f);
 			for (int i = 0; i < 80; i++)
 			{

@@ -15,7 +15,7 @@ namespace ROTMG_Items.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.statDefense += 30;
+            player.statDefense += 60;
         }
     }
 }

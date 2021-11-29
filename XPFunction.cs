@@ -53,7 +53,7 @@ namespace ROTMG_Items
             if (ROTMG_Items.ExpHotKey.JustPressed)
             {
                 Main.NewText($"Your experience is at {XP}", color: Microsoft.Xna.Framework.Color.Blue);
-                Main.NewText($"Your level is at {XPLevel}", color: Microsoft.Xna.Framework.Color.DarkOrange);
+                Main.NewText($"Your level is at {XPLevel}", color: Microsoft.Xna.Framework.Color.Blue);
             }
         }
 
@@ -101,7 +101,19 @@ namespace ROTMG_Items
             if (XP >= XPMax)
             {
                 XP = 0;
-                XPMax = (int)(XPMax * (XPLevel >= 10 ? 1.3f : 1.1f));
+                //XPMax = (int)(XPMax * (XPLevel >= 10 ? 1.3f : 1.1f));
+                if(XPLevel > 20)
+                {
+                    XPMax += XPLevel;
+                }
+                else if(XPLevel > 50)
+                {
+                    XPMax += (int)(XPLevel * 0.75f);
+                }
+                else
+                {
+                    XPMax += 20;
+                }
                 XPLevel += 1;
             }
             else
@@ -112,19 +124,20 @@ namespace ROTMG_Items
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
+            // var Multiplier = Main.Configuration.Load(ROTMG_Items_Config.);
             if (Main.myPlayer == player.whoAmI)
             {
                 if (XPLevel == 0)
                 {
                     LvlZeroDeaths += 1;
                 }
-                if (LvlZeroDeaths >= 5)
+                if (LvlZeroDeaths >= 10)
                 {
                     Main.NewText("You need to level up to actually get fame.", color: Microsoft.Xna.Framework.Color.DarkRed);
                     LvlZeroDeaths = 0;
                 }
-                //player.QuickSpawnItem(ModContent.ItemType<Items.Currency.Fame>(), XPLevel * Main.rand.Next(100, 300));
-                player.QuickSpawnItem(ModContent.ItemType<Items.Currency.Fame>(), XPLevel + (XPTotal / 2));
+                player.QuickSpawnItem(ModContent.ItemType<Items.Currency.Fame>(), (int)((XPLevel + XPTotal) * ModContent.GetInstance<FameConfig>().FameMultiplier)); //the mod config value is supposed to replace the 0.25 here.
+                Main.NewText($"Your level was {XPLevel}");
                 Main.NewText($"Your total XP was: {XPTotal}!");
                 XP = 0;
                 XPLevel = 0;

@@ -79,8 +79,6 @@ namespace ROTMG_Items.NPCs.Friendly
 			return false;
 		}
 
-		// Example Person needs a house built out of ExampleMod tiles. You can delete this whole method in your townNPC for the regular house conditions.
-
 		public override string TownNPCName()
 		{
 			return "";

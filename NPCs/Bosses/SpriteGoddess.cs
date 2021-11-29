@@ -14,7 +14,7 @@ namespace ROTMG_Items.NPCs.Bosses
         public override string HeadTexture => "ROTMG_Items/NPCs/Bosses/SpriteGoddess_Head_Boss";
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Limon the Sprite Goddess");
+            DisplayName.SetDefault("Lylia the Sprite Empress");
             Main.npcFrameCount[npc.type] = 2;
         }
 
@@ -35,12 +35,12 @@ namespace ROTMG_Items.NPCs.Bosses
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.69f * bossLifeScale);
-            npc.damage = (int)(npc.damage * 0.75f);
+            npc.lifeMax = (int)(npc.lifeMax * 1.69f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 1.75f);
         }
 
-        private const int AI_State_Slot = 0;
-
+        private const int AI_State_Slot = 0; //sets the default AI state to 0 which is State_Choose
+        // defining the AI States as readable text instead of just keeping it as an int.
         private int State_Choose = 0;
         private int State_Red = 1;
         private int State_Blue = 2;
@@ -54,10 +54,10 @@ namespace ROTMG_Items.NPCs.Bosses
         {
             get => npc.ai[AI_State_Slot];
             set => npc.ai[AI_State_Slot] = value;
-        }
-        private int timer = 180;
-        private int shottimer = 30;
-        private int phasechooser = Main.rand.Next(1, 6);
+        } //getting and setting the AI State.
+        private int timer = 180; // Sets a default timer, which transaltes to 3 seconds.
+        private int shottimer = 30; // Sets another default timer, which translates to 0.5 seconds used for firing projectiles.
+        private int phasechooser = Main.rand.Next(1, 6); // Chooses a value between 1 and 6 to randomize the first phase.
         private int randomdir = Main.rand.Next(1, 5);
         private int randomheight;
         private int heighttimer = 15;
@@ -84,7 +84,10 @@ namespace ROTMG_Items.NPCs.Bosses
             if (AI_State == State_Choose)
             {
                 shottimer = 30;
-                phasechooser = Main.rand.Next(1, 6);
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    phasechooser = Main.rand.Next(1, 6);
+                }
                 if (phasechooser == 1)
                 {
                     AI_State = State_Red;
@@ -115,7 +118,7 @@ namespace ROTMG_Items.NPCs.Bosses
 
 
             if (AI_State == State_Red)
-            {
+            { // Chases the player and spawns red homing projectiles every .75 seconds.
                 Vector2 position = npc.Center;
                 Vector2 targetPosition = Main.player[npc.target].Center;
                 Vector2 direction = targetPosition - position;
@@ -124,10 +127,10 @@ namespace ROTMG_Items.NPCs.Bosses
                 npc.color = Color.Red;
                 npc.velocity = direction * 6;
                 shottimer--;
-                if(shottimer <= 0)
+                if (shottimer <= 0)
                 {
-                    Projectile.NewProjectile(npc.Center, new Vector2(0,0), ModContent.ProjectileType<Sprite_Goddess_red_Proj>(), 20, 0, Main.myPlayer);
-                    shottimer = 30;
+                    Projectile.NewProjectile(npc.Center, new Vector2(0, 0), ModContent.ProjectileType<Sprite_Goddess_red_Proj>(), 20, 0, Main.myPlayer);
+                    shottimer = 45;
                 }
                 if (timer <= 0)
                 {
@@ -140,7 +143,7 @@ namespace ROTMG_Items.NPCs.Bosses
             { // goes to the left of the player and shoots a star of projectiles.
                 bluepos = Main.player[npc.target].Center - new Vector2(320, randomheight);
                 heighttimer--;
-                if(heighttimer <= 0)
+                if (heighttimer <= 0)
                 {
                     randomheight = Main.rand.Next(32, 80) + 1;
                     heighttimer = 5;
@@ -152,11 +155,11 @@ namespace ROTMG_Items.NPCs.Bosses
                 direction.Normalize();
                 Lighting.AddLight(npc.Center, Color.Blue.ToVector3() * 6);
                 npc.color = Color.Blue;
-                if(npc.position != bluepos)
+                if (npc.position != bluepos)
                 {
                     npc.velocity = directiontobluepos;
                 }
-                else if(npc.position == bluepos)
+                else if (npc.position == bluepos)
                 {
                     npc.position = bluepos;
                 }
@@ -187,7 +190,7 @@ namespace ROTMG_Items.NPCs.Bosses
                 npc.velocity = npc.velocity.RotatedBy(MathHelper.Pi / 8 * Math.Sin(0.09f));
                 Lighting.AddLight(npc.Center, Color.Green.ToVector3() * 6);
                 npc.color = Color.Green;
-                if(shottimer <= 0)
+                if (shottimer <= 0)
                 {
                     Projectile.NewProjectile(npc.Center, direction * 6, ModContent.ProjectileType<Sprite_Goddess_green_Proj>(), 15, 3, Main.myPlayer);
                     shottimer = 15;
@@ -205,7 +208,7 @@ namespace ROTMG_Items.NPCs.Bosses
                 Lighting.AddLight(npc.Center, Color.Teal.ToVector3() * 6);
                 npc.color = Color.Cyan;
 
-                if(shottimer <= 0)
+                if (shottimer <= 0)
                 {
                     Projectile.NewProjectile(npc.Center, new Vector2(0, 8), ModContent.ProjectileType<Sprite_Goddess_cyan_Proj>(), 20, 3, Main.myPlayer);
                     Projectile.NewProjectile(npc.Center, new Vector2(0, -8), ModContent.ProjectileType<Sprite_Goddess_cyan_Proj>(), 20, 3, Main.myPlayer);
@@ -218,39 +221,39 @@ namespace ROTMG_Items.NPCs.Bosses
                     shottimer = 60;
                 }
 
-                if(randomdir == 1)
+                if (randomdir == 1)
                 {
                     npc.velocity = new Vector2(4, -4);
-                    if(timer <= 120)
+                    if (timer <= 120)
                     {
                         npc.velocity = new Vector2(-4, 4);
                     }
                 }
-                else if(randomdir == 2)
+                else if (randomdir == 2)
                 {
                     npc.velocity = new Vector2(-4, 4);
-                    if(timer <= 120)
+                    if (timer <= 120)
                     {
                         npc.velocity = new Vector2(4, -4);
                     }
                 }
-                else if(randomdir == 3)
+                else if (randomdir == 3)
                 {
                     npc.velocity = new Vector2(4, 0);
-                    if(timer <= 120)
+                    if (timer <= 120)
                     {
                         npc.velocity = new Vector2(-4, 0);
                     }
                 }
-                else if(randomdir == 4)
+                else if (randomdir == 4)
                 {
                     npc.velocity = new Vector2(-4, 0);
-                    if(timer <= 120)
+                    if (timer <= 120)
                     {
                         npc.velocity = new Vector2(4, 0);
                     }
                 }
-                if(timer <= 60)
+                if (timer <= 60)
                 {
                     npc.velocity = new Vector2(0, 0);
                 }
@@ -277,16 +280,16 @@ namespace ROTMG_Items.NPCs.Bosses
                 }
             }
 
-            if(Main.expertMode && npc.life <= npc.lifeMax * 0.1)
+            if (Main.expertMode && npc.life <= npc.lifeMax * 0.1)
             {
                 AI_State = State_Rage;
             }
-            if(!Main.expertMode && npc.life <= npc.lifeMax * 0.1)
+            if (!Main.expertMode && npc.life <= npc.lifeMax * 0.1) //change this to outside the biome, placeholder until biome works.
             {
                 AI_State = baby_rage;
             }
 
-            if(AI_State == baby_rage)
+            if (AI_State == baby_rage)
             { // The NPC charges the player a lot faster than gray and shoots 4 projectiles in the cardinel directions.
                 shottimer--;
                 npc.color = Color.Yellow;
@@ -305,7 +308,7 @@ namespace ROTMG_Items.NPCs.Bosses
                 }
             }
 
-            if(AI_State == State_Rage)
+            if (AI_State == State_Rage)
             { // Same as baby rage except diaganol directions too.
                 shottimer--;
                 npc.color = Color.Purple;
@@ -314,7 +317,7 @@ namespace ROTMG_Items.NPCs.Bosses
                 Vector2 direction = targetPosition - position;
                 direction.Normalize();
                 npc.velocity = direction * 8;
-                if(shottimer <= 0)
+                if (shottimer <= 0)
                 {
                     Projectile.NewProjectile(npc.Center + new Vector2(0, 64), new Vector2(0, 8), ModContent.ProjectileType<Sprite_Goddess_purple_Proj>(), 20, 0, Main.myPlayer);
                     Projectile.NewProjectile(npc.Center + new Vector2(0, -64), new Vector2(0, -8), ModContent.ProjectileType<Sprite_Goddess_purple_Proj>(), 20, 0, Main.myPlayer);
@@ -323,8 +326,8 @@ namespace ROTMG_Items.NPCs.Bosses
                     Projectile.NewProjectile(npc.Center + new Vector2(-64, 64), new Vector2(-8, 8), ModContent.ProjectileType<Sprite_Goddess_purple_Proj>(), 20, 0, Main.myPlayer);
                     Projectile.NewProjectile(npc.Center + new Vector2(64, -64), new Vector2(-8, -8), ModContent.ProjectileType<Sprite_Goddess_purple_Proj>(), 20, 0, Main.myPlayer);
                     Projectile.NewProjectile(npc.Center + new Vector2(64, 64), new Vector2(8, 8), ModContent.ProjectileType<Sprite_Goddess_purple_Proj>(), 20, 0, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center + new Vector2(64, -64), new Vector2(8, -8), ModContent.ProjectileType<Sprite_Goddess_purple_Proj>(), 20, 0, Main.myPlayer);
-                    shottimer = 30;
+                    Projectile.NewProjectile(npc.Center + new Vector2(-64, -64), new Vector2(8, -8), ModContent.ProjectileType<Sprite_Goddess_purple_Proj>(), 20, 0, Main.myPlayer);
+                    shottimer = 60;
                 }
             }
         }

@@ -9,7 +9,7 @@ namespace ROTMG_Items.Items.Abilities
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Woodem Helmet");
+            DisplayName.SetDefault("Wooden Helmet");
             Tooltip.SetDefault("Slightly uncomfortable, but you feel a strange power surge through it.\nGives speedy and berserk.");
         }
 

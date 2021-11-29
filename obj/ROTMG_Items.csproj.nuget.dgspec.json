@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\baylo\\OneDrive\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ROTMG_Items\\ROTMG_Items.csproj": {}
+    "C:\\Users\\Bee Snow\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ROTMG_Items\\ROTMG_Items.csproj": {}
   },
   "projects": {
-    "C:\\Users\\baylo\\OneDrive\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ROTMG_Items\\ROTMG_Items.csproj": {
+    "C:\\Users\\Bee Snow\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ROTMG_Items\\ROTMG_Items.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\baylo\\OneDrive\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ROTMG_Items\\ROTMG_Items.csproj",
+        "projectUniqueName": "C:\\Users\\Bee Snow\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ROTMG_Items\\ROTMG_Items.csproj",
         "projectName": "ROTMG_Items",
-        "projectPath": "C:\\Users\\baylo\\OneDrive\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ROTMG_Items\\ROTMG_Items.csproj",
-        "packagesPath": "C:\\Users\\baylo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\baylo\\OneDrive\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ROTMG_Items\\obj\\",
+        "projectPath": "C:\\Users\\Bee Snow\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ROTMG_Items\\ROTMG_Items.csproj",
+        "packagesPath": "C:\\Users\\Bee Snow\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bee Snow\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ROTMG_Items\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\baylo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bee Snow\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -45,7 +45,7 @@
               "version": "[0.1.*, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

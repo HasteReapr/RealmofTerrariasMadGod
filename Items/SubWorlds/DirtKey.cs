@@ -18,7 +18,7 @@ namespace ROTMG_Items.Items.SubWorlds
             item.height = 34;
             item.width = 34;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.maxStack = 1;
+            item.maxStack = 999;
         }
 
         public override bool UseItem(Player player)

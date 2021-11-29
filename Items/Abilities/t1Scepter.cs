@@ -13,13 +13,12 @@ namespace ROTMG_Items.Items.Abilities
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Scepter of Storms");
-            Tooltip.SetDefault("A simple wakizashi made from steel.");
+            Tooltip.SetDefault("A simple scepter made from iron. It conducts electricity.");
         }
 
         public override void SetDefaults()
         {
             item.damage = 40;
-            AncientCost = 35;
             item.width = 40;
             item.height = 40;
             item.useTime = 14;
@@ -34,8 +33,14 @@ namespace ROTMG_Items.Items.Abilities
             item.shoot = ModContent.ProjectileType<Scepter_Projectile>();
             item.shootSpeed = 16f;
             isAbility = true;
+            AncientCost = 20;
         }
 
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            Projectile.NewProjectile(player.Center, Main.MouseWorld * 16, ModContent.ProjectileType<Scepter_Projectile>(), item.damage, 0, player.whoAmI, 0);
+            return base.Shoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
+        }
         /*public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Vector2 speed = new Vector2(speedX, speedY);

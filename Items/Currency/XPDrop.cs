@@ -19,30 +19,29 @@ namespace ROTMG_Items.Items.Currency
 
         public override bool OnPickup(Player player)
         {
-            if (NPC.downedBoss1)
+            if (!Main.hardMode)
             {
-                player.GetModPlayer<XPFunction>().XP += Main.rand.Next(10, 200);
-                player.GetModPlayer<XPFunction>().XPTotal += Main.rand.Next(10, 200);
+                int preHardXP = Main.rand.Next(1, 20);
+                player.GetModPlayer<XPFunction>().XP += preHardXP;
+                player.GetModPlayer<XPFunction>().XPTotal += preHardXP;
             }
-            else if (NPC.downedBoss2)
+            else if (Main.hardMode)
             {
-                player.GetModPlayer<XPFunction>().XP += Main.rand.Next(300, 500);
-                player.GetModPlayer<XPFunction>().XPTotal += Main.rand.Next(300, 500);
+                int hardXP = Main.rand.Next(40, 80);
+                player.GetModPlayer<XPFunction>().XP += hardXP;
+                player.GetModPlayer<XPFunction>().XPTotal += hardXP;
             }
             else if (NPC.downedPlantBoss)
             {
-                player.GetModPlayer<XPFunction>().XP += Main.rand.Next(600, 900);
-                player.GetModPlayer<XPFunction>().XPTotal += Main.rand.Next(600, 900);
-            }
-            else if (NPC.downedGolemBoss)
-            {
-                player.GetModPlayer<XPFunction>().XP += Main.rand.Next(1000, 1300);
-                player.GetModPlayer<XPFunction>().XPTotal += Main.rand.Next(1000, 1300);
+                int downPlant = Main.rand.Next(40, 200);
+                player.GetModPlayer<XPFunction>().XP += downPlant;
+                player.GetModPlayer<XPFunction>().XPTotal += downPlant;
             }
             else if (NPC.downedMoonlord)
             {
-                player.GetModPlayer<XPFunction>().XP += Main.rand.Next(1500, 2500);
-                player.GetModPlayer<XPFunction>().XPTotal += Main.rand.Next(1500, 2500);
+                int downMoon = Main.rand.Next(200, 400);
+                player.GetModPlayer<XPFunction>().XP += downMoon;
+                player.GetModPlayer<XPFunction>().XPTotal += downMoon;
             }
             return false;
         }

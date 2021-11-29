@@ -40,8 +40,8 @@ namespace ROTMG_Items.UI
 			text.Top.Set(40, 0f);
 			text.Left.Set(0, 0f);
 
-			gradientA = new Color(26, 153, 0); //Darker goes here
-			gradientB = new Color(85, 255, 51); //Lighter goes here
+			gradientA = new Color(79, 0, 124); //Darker goes here
+			gradientB = new Color(125, 0, 102); //Lighter goes here
 
 			area.Append(text);
 			area.Append(barFrame);

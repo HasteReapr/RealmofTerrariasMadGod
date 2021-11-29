@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "bgF1Dh0gFI/GRvHckuxEageXiUufbSxQDHAI1pDByZqvV/Vm/u8QyXwD0pScR7spE+miAcv0XWZyvgICMnqmSg==",
+  "dgSpecHash": "dUFqkfgHDD25eGkCh6GGtpCU5ZctxYIRzFh8hEGEBqBrQPzxTPMg3+hEWGh+OlDbqWgsTUjG0GLbwTmjPyEM/Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\baylo\\OneDrive\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ROTMG_Items\\ROTMG_Items.csproj",
+  "projectFilePath": "C:\\Users\\Bee Snow\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ROTMG_Items\\ROTMG_Items.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\baylo\\.nuget\\packages\\tmodloader.codeassist\\0.1.2\\tmodloader.codeassist.0.1.2.nupkg.sha512"
+    "C:\\Users\\Bee Snow\\.nuget\\packages\\tmodloader.codeassist\\0.1.3\\tmodloader.codeassist.0.1.3.nupkg.sha512"
   ],
   "logs": []
 }

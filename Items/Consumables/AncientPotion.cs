@@ -36,7 +36,7 @@ namespace ROTMG_Items.Items.Consumables
                 player.GetModPlayer<ROTMGPlayer>().AbilityPowerCurrent -= 35;
             } else
             player.GetModPlayer<ROTMGPlayer>().AbilityPowerCurrent += 75;
-            player.AddBuff(ModContent.BuffType<AncientSickness>(), 600, false);
+            player.AddBuff(ModContent.BuffType<AncientSickness>(), 180, false);
             return true;
         }
 

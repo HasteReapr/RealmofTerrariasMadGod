@@ -8,11 +8,11 @@ namespace ROTMG_Items.Items.Abilities
 	{
         public override void SetStaticDefaults()
         {
-			Main.projFrames[projectile.type] = 6;
+			Main.projFrames[projectile.type] = 4;
 		}
         public override void SetDefaults()
 		{
-			projectile.width = 24;
+			projectile.width = 32;
 			projectile.height = 32;
 			projectile.penetrate = -1;
 			projectile.tileCollide = false;
@@ -51,10 +51,10 @@ namespace ROTMG_Items.Items.Abilities
 				projectile.ai[1] = Main.rand.Next(2) + 1;
             }
 
-			if (++projectile.frameCounter >= 10)
+			if (++projectile.frameCounter >= 15)
 			{
 				projectile.frameCounter = 0;
-				if (++projectile.frame >= 6)
+				if (++projectile.frame >= 4)
 				{
 					projectile.frame = 0;
 				}
@@ -65,7 +65,7 @@ namespace ROTMG_Items.Items.Abilities
 
 		public override void Kill(int timeLeft)
 		{
-			Main.PlaySound(SoundID.Item1, projectile.position);
+			Main.PlaySound(SoundID.CoinPickup, projectile.position);
 			Projectile.NewProjectile(projectile.position.X+16f, projectile.position.Y+16f, 0f, 0f, mod.ProjectileType("SilverCoin"), 0, 0f, projectile.owner, 0f, 0f);
 		}
 	}

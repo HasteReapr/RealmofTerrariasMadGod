@@ -28,8 +28,8 @@ namespace ROTMG_Items.Items.Weapons
 			item.useStyle = 1;
 			item.knockBack = 3;
 			item.value = 5000000;
-			item.rare = 11;
-			item.UseSound = SoundID.Item1;
+			item.rare = ItemRarityID.Purple;
+			item.UseSound = SoundID.Item9;
 			item.autoReuse = true;
 			item.shoot = ModContent.ProjectileType<Fairy_Bullet>();
 			item.shootSpeed = 16f;

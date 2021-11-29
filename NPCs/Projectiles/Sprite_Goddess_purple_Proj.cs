@@ -74,7 +74,7 @@ namespace ROTMG_Items.NPCs.Projectiles
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(ModContent.BuffType<Buffs.VoidSickness>(), 5, false);
+            target.AddBuff(ModContent.BuffType<Buffs.VoidSickness>(), 300, false);
         }
     }
 }

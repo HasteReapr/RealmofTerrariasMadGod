@@ -15,6 +15,7 @@ namespace ROTMG_Items
 	public class ROTMGPlayer : ModPlayer
 	{
 		public bool Lost_Halls;
+		public bool SpriteWorld;
 		public bool moonded;
 
 		public bool t15Breastplate;
@@ -23,6 +24,7 @@ namespace ROTMG_Items
 		public bool t15SetBonus;
 		public bool WarriorBuff;
 		public bool DexIncrease;
+		public bool Bracer;
 		public bool AdminCrown;
 		public bool SpookyPet;
 		public float PermIncrease;
@@ -68,6 +70,10 @@ namespace ROTMG_Items
 
 		public override float UseTimeMultiplier(Item item)
 		{
+			if(Bracer == true)
+            {
+				return Bracer ? 1.15f : 1f;
+            }
 			if (DexIncrease == true) 
 			{ 
 				return DexIncrease ? 1.75f : 1f;
@@ -127,6 +133,7 @@ namespace ROTMG_Items
 			AdminCrown = false;
 			Unstable = false;
 			DexIncrease = false;
+			Bracer = false;
 			WarriorBuff = false;
 			SpookyPet = false;
 			t15Breastplate = false;
@@ -197,11 +204,16 @@ namespace ROTMG_Items
         public override void UpdateBiomes()
         {
 			Lost_Halls = TheWorld.Lost_Blocks >= 50;
+			SpriteWorld = TheWorld.Sprite_Tiles >= 20;
         }
 
         public override bool CustomBiomesMatch(Player other)
         {
 			ROTMGPlayer modOther = other.GetModPlayer<ROTMGPlayer>();
+			if(TheWorld.Sprite_Tiles >= 20)
+            {
+				return SpriteWorld = modOther.SpriteWorld;
+            }
 			return Lost_Halls = modOther.Lost_Halls;
         }
 
@@ -209,12 +221,14 @@ namespace ROTMG_Items
         {
 			ROTMGPlayer modOther = other.GetModPlayer<ROTMGPlayer>();
 			modOther.Lost_Halls = Lost_Halls;
+			modOther.SpriteWorld = SpriteWorld;
 		}
 
         public override void ReceiveCustomBiomes(BinaryReader reader)
         {
 			BitsByte flags = reader.ReadByte();
 			Lost_Halls = flags[0];
+			SpriteWorld = flags[0];
 		}
         public override Texture2D GetMapBackgroundImage()
         {
@@ -279,14 +293,22 @@ namespace ROTMG_Items
 			AbilityPowerRegenRate = tag.GetFloat("AbilityPowerRegenRate");
 			moonded = tag.GetBool("moonded");
 		}
-		public float Unstabled = Main.rand.Next(100) + 1f;
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (Unstable == true)
+            if (player.HasBuff(ModContent.BuffType<Inspired>()))
             {
-				speedX = Main.rand.Next(-100, 100) +1;
-				speedY = Main.rand.Next(-100, 100) +1;
+				speedX *= 1.5f;
+				speedY *= 1.5f;
+            }
+            if (player.HasBuff(ModContent.BuffType<Unstable>()))
+            {
+				speedX = Main.rand.Next(-20, 20) +1;
+				speedY = Main.rand.Next(-20, 20) +1;
 			}
+            if (player.HasBuff(ModContent.BuffType<Stunned>()))
+            {
+				return false;
+            }
             return base.Shoot(item, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
         }
         internal enum SyncPlayerMessage : byte
@@ -354,6 +376,7 @@ namespace ROTMG_Items
             }
 			return true;
 		}
+		// just makes the invulnerability effect work
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {

@@ -51,7 +51,7 @@ namespace ROTMG_Items.NPCs
         public float Timer = 250;
         public float wanderrand = Main.rand.Next(2) + 1;
         public float Jump_Cooldown;
-        public float Spot_WaitTime = 120;
+        public float Spot_WaitTime = 30;
         public override void AI()
         {
             npc.TargetClosest(true);
@@ -59,7 +59,7 @@ namespace ROTMG_Items.NPCs
             Vector2 targetPosition = Main.player[npc.target].Center;
             Vector2 direction = targetPosition - position;
             direction.Normalize();
-            if (Main.player[npc.target].Distance(npc.Center) <= 80f)
+            if (AI_State == State_Spot)
             {
                 Spot_WaitTime--;
                 npc.velocity = new Vector2(0, 0);
@@ -78,6 +78,10 @@ namespace ROTMG_Items.NPCs
 
             if (AI_State == State_Wander)
             {
+                if (Main.player[npc.target].Distance(npc.Center) <= 80f)
+                {
+                    AI_State = State_Spot;
+                }
                 Jump_Cooldown--;
                 if (wanderrand == 1)
                 {

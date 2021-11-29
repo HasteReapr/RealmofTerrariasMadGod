@@ -20,6 +20,7 @@ namespace ROTMG_Items
 	public class TheWorld : ModWorld
 	{
 		public static int Lost_Blocks;
+		public static int Sprite_Tiles;
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
 		{
 			int ShiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
@@ -28,13 +29,21 @@ namespace ROTMG_Items
 				// Next, we insert our step directly after the original "Shinies" step. 
 				// ExampleModOres is a method seen below.
 				tasks.Insert(ShiniesIndex + 1, new PassLegacy("ROTMG Mod Ores", ROTMG_ItemsOres));
+				//tasks.Insert(ShiniesIndex + 1, new PassLegacy("Realm of Terrarias Mad God Mini Biomes", ROTMG_ItemsMiniBiomes));
 			}
 		}
 
+
+		private void ROTMG_ItemsMiniBiomes(GenerationProgress progress)
+        {
+			progress.Message = "Generating mini biomes...";
+			int x = WorldGen.genRand.Next(0, Main.maxTilesX);
+			int y = WorldGen.genRand.Next((int)WorldGen.worldSurfaceHigh, Main.maxTilesY);
+		}
 		private void ROTMG_ItemsOres(GenerationProgress progress)
 		{
 			// progress.Message is the message shown to the user while the following code is running. Try to make your message clear. You can be a little bit clever, but make sure it is descriptive enough for troubleshooting purposes. 
-			progress.Message = "Generating ability and weapon ores.";
+			progress.Message = "Generating ability and weapon ores...";
 
 			// Ores are quite simple, we simply use a for loop and the WorldGen.TileRunner to place splotches of the specified Tile in the world.
 			// "6E-05" is "scientific notation". It simply means 0.00006 but in some ways is easier to read.
@@ -85,6 +94,7 @@ namespace ROTMG_Items
 		{
 			// Here we count various tiles towards ZoneExample
 			Lost_Blocks = tileCounts[ModContent.TileType<Lost_Block>()];
+			Sprite_Tiles = tileCounts[ModContent.TileType<Sprite_Bit>()];
 		}
 	}
 }

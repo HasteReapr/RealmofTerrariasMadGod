@@ -13,8 +13,15 @@ namespace ROTMG_Items.Buffs
             Main.debuff[Type] = false;
         }
 
+        int timer = 60;
         public override void Update(Player player, ref int buffIndex)
         {
+            timer--;
+            if(timer <= 0)
+            {
+                timer = 60;
+                player.statLife += 1;
+            }
             player.lifeRegen += 5;
         }
     }

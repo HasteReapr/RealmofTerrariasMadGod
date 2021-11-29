@@ -1,4 +1,4 @@
-﻿using Terraria;
+﻿/*using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
@@ -36,4 +36,4 @@ namespace ROTMG_Items
             WorldUtils.Gen(new Point(x, y), new Shapes.Rectangle(4, 22), new Actions.ClearTile());
         }
     }
-}
+}*/

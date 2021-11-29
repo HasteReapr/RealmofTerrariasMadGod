@@ -29,6 +29,11 @@ namespace ROTMG_Items
 					maxSpawns = 50;
 				}
             }
+			if(player.GetModPlayer<ROTMGPlayer>().SpriteWorld == true)
+            {
+				spawnRate *= 2;
+				maxSpawns = 100;
+            }
         }
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
@@ -40,10 +45,38 @@ namespace ROTMG_Items
             {
 				pool.Clear();
             }
+			if(spawnInfo.player.GetModPlayer<ROTMGPlayer>().SpriteWorld == true)
+            {
+				pool.Clear();
+				pool.Add(ModContent.NPCType<NPCs.Hostile.Sprites.SpriteKnight>(), 0.5f);
+				pool.Add(ModContent.NPCType<NPCs.Hostile.Sprites.SpriteSpearer>(), 0.5f);
+			}
 		}
         public override void NPCLoot(NPC npc)
 		{
+			if(npc.type == NPCID.SkeletronHead)
+            {
+				Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.GreaterEssence>(), 1);
+			}
+			if(npc.type == NPCID.WallofFlesh)
+            {
+				Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.UnholyEssence>(), 1);
+			}
+			if(npc.type == NPCID.SkeletronPrime || npc.type == NPCID.Spazmatism || npc.type == NPCID.Retinazer || npc.type == NPCID.TheDestroyer)
+            {
+				Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.MechanicalEssence>(), 1);
+			}
+			if(npc.type == NPCID.Plantera)
+            {
+				Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.HerbalEssence>(), 1);
+			}
+			if(npc.type == NPCID.MoonLordCore)
+            {
+				Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.LunarEssence>(), 1);
+			}
+
 			Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Currency.XPDrop>(), 1);
+
 			if(NPC.downedPlantBoss == true)
             {
 				int acclaim = Main.rand.Next(300) + 1;
@@ -68,12 +101,12 @@ namespace ROTMG_Items
 					Item.NewItem(npc.getRect(), ModContent.ItemType<Majesty>(), 1);
                 }
             }*/
-			int SUSSWORD = Main.rand.Next(599);
+			int SUSSWORD = Main.rand.Next(1999);
 			if (SUSSWORD == 1)
             {
 				Item.NewItem(npc.getRect(), ModContent.ItemType<ColoSus>(), 1);
             }
-			int PotBag = Main.rand.Next(199);
+			int PotBag = Main.rand.Next(299);
 			if (PotBag == 1)
 			{
 				Item.NewItem(npc.getRect(), ModContent.ItemType<PotBag>(), 1);

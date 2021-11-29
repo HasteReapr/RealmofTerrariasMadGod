@@ -44,13 +44,6 @@ namespace ROTMG_Items.Items.Weapons.Projectiles
 			projectile.rotation = projectile.velocity.ToRotation();
 
 		}
-
-
-		public override void Kill(int timeLeft)
-		{
-			Main.PlaySound(SoundID.Item1, projectile.position);
-		}
-
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
 			projectile.ai[0] += 0.1f;

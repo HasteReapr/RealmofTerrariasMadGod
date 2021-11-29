@@ -105,6 +105,8 @@ namespace ROTMG_Items
                         case SyncPlayerMessage.Pets:
                             PetPlayer PetPlayer = Main.player[playernumber].GetModPlayer<PetPlayer>();
                             bool SpritePet = reader.ReadBoolean();
+                            bool Stonepet = reader.ReadBoolean();
+                            PetPlayer.Stonepet = Stonepet;
                             PetPlayer.SpritePet = SpritePet;
                             break;
                     }
@@ -125,6 +127,7 @@ namespace ROTMG_Items
                 _AbilityBarUserInterface = new UserInterface();
                 _AbilityBarUserInterface.SetState(AbilityPowerBar);
 
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Realm_Title"), ItemType("Realm_Title_Box"), TileType("Realm_Title_Box_Placeable"));
 
                 if (FontExists("Fonts/ExampleFont"))
                     exampleFont = GetFont("Fonts/ExampleFont");

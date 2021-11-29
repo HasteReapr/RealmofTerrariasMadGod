@@ -33,7 +33,7 @@ namespace ROTMG_Items.NPCs.Projectiles
             projectile.velocity = new Vector2(0, 0);
             Vector2 targetCenter = projectile.Center;
             bool foundTarget = false;
-            float speed = 16f;
+            float speed = 8f;
             float distanceFromTarget = 9999999f;
 
             for (int i = 0; i < Main.maxPlayers; i++)

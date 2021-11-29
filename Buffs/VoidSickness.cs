@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 
 namespace ROTMG_Items.Buffs
 {
@@ -23,59 +24,8 @@ namespace ROTMG_Items.Buffs
             if(timer <= 0)
             {
                 randomizedsize = Main.rand.Next(8, 64);
-                if (Main.expertMode)
-                {
-                    player.statLife -= 4;
-                }
-                else if (NPC.downedBoss3)
-                {
-                    if (Main.expertMode)
-                    {
-                        player.statLife -= 7;
-                    }
-                    else
-                    {
-                        player.statLife -= 4;
-                    }
-                }
-                else if (NPC.downedMechBoss3)
-                {
-                    if (Main.expertMode)
-                    {
-                        player.statLife -= 11;
-                    }
-                    else
-                    {
-                        player.statLife -= 7;
-                    }
-                }
-                else if (NPC.downedPlantBoss)
-                {
-                    if (Main.expertMode)
-                    {
-                        player.statLife -= 16;
-                    }
-                    else
-                    {
-                        player.statLife -= 11;
-                    }
-                }
-                else if (NPC.downedMoonlord)
-                {
-                    if (Main.expertMode)
-                    {
-                        player.statLife -= 20;
-                    }
-                    else
-                    {
-                        player.statLife -= 15;
-                    }
-                }
-                else
-                {
-                    player.statLife -= 1;
-                }
-                Dust.NewDust(player.Center, randomizedsize, randomizedsize, ModContent.DustType<Dusts.GhostlyDust>(), Main.rand.Next(3), Main.rand.Next(3));
+                player.Hurt(PlayerDeathReason.ByCustomReason($"{player.name} was consumed by the void."), 3, 0);
+                Dust.NewDust(player.Center + new Vector2(Main.rand.Next(-16, 16), Main.rand.Next(-16, 16)), randomizedsize, randomizedsize, ModContent.DustType<Dusts.GhostlyDust>(), Main.rand.Next(3), Main.rand.Next(3));
                 timer = 2;
             }
         }

@@ -230,7 +230,7 @@ namespace ROTMG_Items.Items.Accesories
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Admin Crown");
-			Tooltip.SetDefault("You really shouldn't have this lol.");
+			Tooltip.SetDefault("Admin Item\nA crown with unfathomable power.");
 			item.rare = ItemRarityID.Expert;
 		}
 

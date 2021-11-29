@@ -28,8 +28,16 @@ namespace ROTMG_Items
         private int speed = 16;
         private int knockBack = 0;
         private int Damage = 0;
+        private int tier = 0;
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
+            /*int num = ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type;
+            if (num == 10)
+            {
+            }
+            else if (num == 69)
+            {
+            }*/
             if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item?.IsAir ?? true)
             {
                 UseCost = 0;
@@ -546,7 +554,9 @@ namespace ROTMG_Items
 
                 else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<t1Waki>())
                 {
+                    //Need to add some sort of way to incude wakis in this, that isn't like this. Currently just spawns projectile, regardless of mana.
                     Projectile.NewProjectile(Main.MouseWorld + (v * 40) + (perpendicular * 90), toMouse * 8, ModContent.ProjectileType<t1Waki_Proj>(), 40, 0, player.whoAmI, 0, 0);
+                    projectileType = -1;
                     UseCost = 35;
                     buffType = -1;
                     buffType2 = -1;
@@ -627,6 +637,156 @@ namespace ROTMG_Items
                     buffType5 = -1;
                 }
 
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<Items.Abilities.t1Poison>())
+                {
+                    projectileType = ModContent.ProjectileType<t1PoisonBottle>();
+                    UseCost = 25;
+                    Damage = 20;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<Items.Abilities.t2Poison>())
+                {
+                    projectileType = ModContent.ProjectileType<t2PoisonBottle>();
+                    UseCost = 25;
+                    Damage = 40;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<Items.Abilities.t3Poison>())
+                {
+                    projectileType = ModContent.ProjectileType<t3PoisonBottle>();
+                    UseCost = 35;
+                    Damage = 60;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<Items.Abilities.t4Poison>())
+                {
+                    projectileType = ModContent.ProjectileType<t4PoisonBottle>();
+                    UseCost = 35;
+                    Damage = 120;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<Items.Abilities.t5Poison>())
+                {
+                    projectileType = ModContent.ProjectileType<t5PoisonBottle>();
+                    UseCost = 90;
+                    Damage = 500;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<Items.Abilities.t6Poison>())
+                {
+                    projectileType = ModContent.ProjectileType<t6PoisonBottle>();
+                    UseCost = 120;
+                    Damage = 1500;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<Items.Abilities.t1Scepter>())
+                {
+                    projectileType = ModContent.ProjectileType<Scepter_Projectile>();
+                    UseCost = 20;
+                    Damage = 40;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                    tier = 0;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<Items.Abilities.t2Scepter>())
+                {
+                    projectileType = ModContent.ProjectileType<Scepter_Projectile>();
+                    UseCost = 25;
+                    Damage = 100;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                    tier = 1;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<Items.Abilities.t3Scepter>())
+                {
+                    projectileType = ModContent.ProjectileType<Scepter_Projectile>();
+                    UseCost = 30;
+                    Damage = 240;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                    tier = 2;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<Items.Abilities.t4Scepter>())
+                {
+                    projectileType = ModContent.ProjectileType<Scepter_Projectile>();
+                    UseCost = 50;
+                    Damage = 360;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                    tier = 3;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<Items.Abilities.t5Scepter>())
+                {
+                    projectileType = ModContent.ProjectileType<Scepter_Projectile>();
+                    UseCost = 70;
+                    Damage = 500;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                    tier = 4;
+                }
+
+                else if (ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type == ModContent.ItemType<Items.Abilities.t6Scepter>())
+                {
+                    projectileType = ModContent.ProjectileType<Scepter_Projectile>();
+                    UseCost = 90;
+                    Damage = 750;
+                    buffType = -1;
+                    buffType2 = -1;
+                    buffType3 = -1;
+                    buffType4 = -1;
+                    buffType5 = -1;
+                    tier = 5;
+                }
+
                 //Dunno why the team effects aren't applied here. I used the same code as the items.
                 if (player.GetModPlayer<ROTMGPlayer>().AbilityPowerCurrent >= UseCost)
                 {
@@ -673,7 +833,7 @@ namespace ROTMG_Items
                         }
                     if(projectileType != -1)
                     {
-                        Projectile.NewProjectile(player.Center, player.DirectionTo(Main.MouseWorld) * speed, projectileType, Damage, knockBack, Main.myPlayer, 0, 0);
+                        Projectile.NewProjectile(player.Center, player.DirectionTo(Main.MouseWorld) * speed, projectileType, Damage, knockBack, Main.myPlayer, 0, tier);
                     }
                     player.GetModPlayer<ROTMGPlayer>().AbilityPowerCurrent -= UseCost;
                 }
@@ -695,6 +855,7 @@ namespace ROTMG_Items
                     speed = 16;
                     knockBack = 0;
                     Damage = 0;
+                    tier = 0;
                     return;
                 }
             }
