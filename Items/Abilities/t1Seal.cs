@@ -2,6 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using ROTMG_Items.Items.Materials;
+using Microsoft.Xna.Framework;
+using ROTMG_Items.Items.Abilities.Projectiles;
 
 namespace ROTMG_Items.Items.Abilities
 {
@@ -9,7 +11,7 @@ namespace ROTMG_Items.Items.Abilities
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Seal of of the Monk");
+            DisplayName.SetDefault("Seal of the Monk");
             Tooltip.SetDefault("A seal used by monks to bless others.\nIncreases your damage by 25%.");
         }
 
@@ -21,9 +23,18 @@ namespace ROTMG_Items.Items.Abilities
             item.useAnimation = 15;
             item.useTime = 15;
             AncientCost = 20;
+            item.shootSpeed = 0;
+            item.shoot = ModContent.ProjectileType<SealProjectile>();
+            item.shootSpeed = 0;
             item.rare = ItemRarityID.Green;
             item.value = Item.buyPrice(gold: 1);
             isAbility = true;
+        }
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            Projectile.NewProjectile(player.Center, player.DirectionTo(Main.MouseWorld) * item.shootSpeed, item.shoot, item.damage, item.knockBack, player.whoAmI, 0, tier);
+            return false;
         }
 
         public override bool UseItem(Player player)

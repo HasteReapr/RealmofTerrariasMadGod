@@ -27,13 +27,17 @@ namespace ROTMG_Items.Items.Abilities
             item.value = Item.buyPrice(gold: 1);
             item.buffType = ModContent.BuffType<RogueInvisible>();
             item.buffTime = 1200;
+            buffType2 = ModContent.BuffType<ATKUp>();
+            buffTime2 = 1440;
+            buffType3 = ModContent.BuffType<Slowed>();
+            buffTime3 = 1440;
             isAbility = true;
         }
 
         public override bool UseItem(Player player)
         {
-            player.AddBuff(ModContent.BuffType<ATKUp>(), 1200, false);
-            player.AddBuff(ModContent.BuffType<Slowed>(), 1440, false);
+            player.AddBuff(buffType2, buffTime2, false);
+            player.AddBuff(buffType3, buffTime3, false);
             return true;
         }
 

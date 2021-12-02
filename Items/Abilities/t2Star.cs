@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using ROTMG_Items.Items;
 using ROTMG_Items;
 using ROTMG_Items.Items.Materials;
+using ROTMG_Items.Items.Abilities.Projectiles;
 
 namespace ROTMG_Items.Items.Abilities
 {
@@ -30,9 +31,16 @@ namespace ROTMG_Items.Items.Abilities
 			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = false;
-			item.shoot = ModContent.ProjectileType<t2StarProj>();
+			item.shoot = ModContent.ProjectileType<StarProj>();
 			item.shootSpeed = 16f;
 			isAbility = true;
+			tier = 1;
+		}
+
+		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+		{
+			Projectile.NewProjectile(player.Center, player.DirectionTo(Main.MouseWorld) * item.shootSpeed, item.shoot, item.damage, item.knockBack, player.whoAmI, 0, tier);
+			return false;
 		}
 
 		public override void AddRecipes()

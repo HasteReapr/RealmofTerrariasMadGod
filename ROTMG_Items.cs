@@ -19,6 +19,8 @@ namespace ROTMG_Items
         internal AbilityPowerBar AbilityPowerBar;
         public UserInterface _AbilitySlotUI;
         internal AbilitySlotUI AbilitySlotUI;
+        public UserInterface _DupePanelUI;
+        internal DupeUIPanel DupeUIPanel;
 
         //public static Texture2D CachedLogo = Main.logoTexture;
 
@@ -140,6 +142,10 @@ namespace ROTMG_Items
                 AbilitySlotUI = new AbilitySlotUI();
                 _AbilitySlotUI = new UserInterface();
                 _AbilitySlotUI.SetState(AbilitySlotUI);
+
+                DupeUIPanel = new DupeUIPanel();
+                _DupePanelUI = new UserInterface();
+                _DupePanelUI.SetState(DupeUIPanel);
             }
 
         }
@@ -148,6 +154,10 @@ namespace ROTMG_Items
             if (StatUI.Visible)
             {
                 _exampleUserInterface?.Update(gameTime);
+            }
+            if (DupeUIPanel.Visible)
+            {
+                _DupePanelUI?.Update(gameTime);
             }
             _AbilityBarUserInterface?.Update(gameTime);
 
@@ -195,6 +205,20 @@ namespace ROTMG_Items
 
             if (mouseTextIndex != -1)
             {
+                layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
+                    "ROTMG_Items: Dupe Panel",
+                    delegate
+                    {
+                        if (DupeUIPanel.Visible == true)
+                        {
+                            _DupePanelUI.Draw(Main.spriteBatch, new GameTime());
+                        }
+                        return true;
+                    },
+                    InterfaceScaleType.UI)
+                );
+
+
                 layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
                     "ExampleMod: Coins Per Minute",
                     delegate

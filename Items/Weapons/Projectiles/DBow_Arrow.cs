@@ -12,8 +12,8 @@ namespace ROTMG_Items.Items.Weapons.Projectiles
 	{
 		public override void SetDefaults()
 		{
-			projectile.width = 72;
-			projectile.height = 27;
+			projectile.width = 32;
+			projectile.height = 32;
 			projectile.friendly = true;
 			projectile.penetrate = 1;
 			projectile.timeLeft = 40;

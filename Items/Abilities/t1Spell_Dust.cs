@@ -3,12 +3,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using ROTMG_Items.Items.Abilities.Projectiles;
 
 namespace ROTMG_Items.Items.Abilities
 {
 	public class t1Spell_Dust : ModProjectile
 	{
-		public override string Texture => "ROTMG_Items/Items/Abilities/t1Spell_Proj";
+		public override string Texture => "ROTMG_Items/Items/Abilities/Projectiles/t1Spell_Proj";
 		public override void SetDefaults()
 		{
 			projectile.width = 16;
@@ -32,11 +33,11 @@ namespace ROTMG_Items.Items.Abilities
 			Projectile.NewProjectile(projectile.position.X, projectile.position.Y, projectile.velocity.X, projectile.velocity.Y, mod.ProjectileType("t1Spell_Proj"), 10, 0f, projectile.owner, 0f, 0f);
 			Projectile.NewProjectile(projectile.position.X, projectile.position.Y, projectile.velocity.X * -1, projectile.velocity.Y * -1, mod.ProjectileType("t1Spell_Proj"), 10, 0f, projectile.owner, 0f, 0f);
 
-			Projectile.NewProjectile(projectile.position, (side * -1) * (speed * 16), mod.ProjectileType("t1Spell_Proj"), 10, 0f, Main.myPlayer); // left
-			Projectile.NewProjectile(projectile.position, side * (speed * 16), mod.ProjectileType("t1Spell_Proj"), 10, 0f, Main.myPlayer);
+			Projectile.NewProjectile(projectile.position, (side * -1) * (speed * 16), ModContent.ProjectileType<Spell_Projectile>(), 10, 0f, Main.myPlayer); // left
+			Projectile.NewProjectile(projectile.position, side * (speed * 16), ModContent.ProjectileType<Spell_Projectile>(), 10, 0f, Main.myPlayer);
 
-			Projectile.NewProjectile(projectile.position, (side2 * -1) * (speed * 16), mod.ProjectileType("t1Spell_Proj"), 10, 0f, Main.myPlayer); //right
-			Projectile.NewProjectile(projectile.position, side2 * (speed * 16), mod.ProjectileType("t1Spell_Proj"), 10, 0f, Main.myPlayer);
+			Projectile.NewProjectile(projectile.position, (side2 * -1) * (speed * 16), ModContent.ProjectileType<Spell_Projectile>(), 10, 0f, Main.myPlayer); //right
+			Projectile.NewProjectile(projectile.position, side2 * (speed * 16), ModContent.ProjectileType<Spell_Projectile>(), 10, 0f, Main.myPlayer);
 		}
     }
 }

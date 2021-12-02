@@ -4,6 +4,8 @@ using Terraria.ModLoader;
 using ROTMG_Items.Items;
 using Terraria.DataStructures;
 using ROTMG_Items.Items.Materials;
+using ROTMG_Items.Items.Abilities.Projectiles;
+using Microsoft.Xna.Framework;
 
 namespace ROTMG_Items.Items.Abilities
 {
@@ -20,7 +22,7 @@ namespace ROTMG_Items.Items.Abilities
 			AncientCost = 30;
 			item.rare = ItemRarityID.Cyan;
 			item.damage = 0;
-			item.useStyle = ItemUseStyleID.HoldingOut; //yes the floor here is made out of floor. I'm glad i figured out how to make code readable bc i wouldnt know what the FUCK this is
+			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.magic = true;
 			item.width = 40;
 			item.height = 40;
@@ -33,10 +35,17 @@ namespace ROTMG_Items.Items.Abilities
 			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = false;
-			item.shoot = ModContent.ProjectileType<t3Decoy>();
+			item.shoot = ModContent.ProjectileType<DecoyProjectile>();
 			item.shootSpeed = 16f;
 			isAbility = true;
 		}
+
+		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+		{
+			Projectile.NewProjectile(player.Center, player.DirectionTo(Main.MouseWorld) * item.shootSpeed, item.shoot, item.damage, item.knockBack, player.whoAmI, 0, 2);
+			return false;
+		}
+
 		public override bool AltFunctionUse(Player player)
 		{
 			return true;

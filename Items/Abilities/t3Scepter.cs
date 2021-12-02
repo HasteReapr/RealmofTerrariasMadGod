@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using ROTMG_Items.Items;
 using ROTMG_Items;
 using ROTMG_Items.Items.Materials;
+using ROTMG_Items.Items.Abilities.Projectiles;
 
 namespace ROTMG_Items.Items.Abilities
 {
