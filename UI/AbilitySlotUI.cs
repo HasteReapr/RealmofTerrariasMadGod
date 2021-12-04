@@ -7,42 +7,49 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
+using Terraria.GameContent.UI.Elements;
 using ROTMG_Items.Items.Abilities;
 
 namespace ROTMG_Items.UI
 {
-	// This class represents the UIState for our ExamplePerson Awesomeify chat function. It is similar to the Goblin Tinkerer's Reforge function, except it only gives Awesome and ReallyAwesome prefixes. 
 	internal class AbilitySlotUI : UIState
 	{
 		public VanillaItemSlotWrapper _vanillaItemSlot;
 		public AncientCostFunction ancientCostFunction;
+		public UIImage empty;
+		public UIImage full;
 
 		public override void OnInitialize()
 		{
 			_vanillaItemSlot = new VanillaItemSlotWrapper(ItemSlot.Context.BankItem, 0.85f)
 			{
-				Left = { Pixels = 50 },
+				Left = { Pixels = 900 },
 				Top = { Pixels = 270 },
 				ValidItemFunc = item => item.IsAir || (item.modItem is AncientCostFunction function && function.isAbility)
 			};
-			// Here we limit the items that can be placed in the slot. We are fine with placing an empty item in or a non-empty item that can be prefixed. Calling Prefix(-3) is the way to know if the item in question can take a prefix or not.
+			Texture2D emptySlot = ModContent.GetTexture("ROTMG_Items/UI/EmptyAbilitySlot");
+			Texture2D filledSlot = ModContent.GetTexture("ROTMG_Items/UI/FullAbilitySlot");
+
+			empty = new UIImage(emptySlot);
+			empty.Left.Set(1.5f, 0f);
+			empty.Top.Set(1.5f, 0f);
+			_vanillaItemSlot.Append(empty);
+
 			Append(_vanillaItemSlot);
 		}
 		
 		public override void Update(GameTime gameTime)
 		{
-			base.Update(gameTime);
-		}
 
+		}
 		protected override void DrawSelf(SpriteBatch spriteBatch)
 		{
-			base.DrawSelf(spriteBatch);
-
-			const int slotX = 50;
+			const int slotX = 500;
 			const int slotY = 270;
 			if (!_vanillaItemSlot.Item.IsAir)
 			{
 				ItemSlot.DrawSavings(Main.spriteBatch, slotX + 130, Main.instance.invBottom, true);
+				
 			}
 			else
 			{

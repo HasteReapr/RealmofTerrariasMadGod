@@ -36,7 +36,7 @@ namespace ROTMG_Items.UI
 				Left = { Pixels = 55 },
 				Top = { Pixels = 45 },
 				Width = { Pixels = 50 },
-				Height = { Pixels = 270 }
+				Height = { Pixels = 50 }
 			};
 			DupeUI.Append(vanillaItemSlot);
 
@@ -51,9 +51,9 @@ namespace ROTMG_Items.UI
 
 			Texture2D buttonButtonTexture = ModContent.GetTexture("ROTMG_Items/UI/Button_button");
 			UIHoverImageButton dupeButton = new UIHoverImageButton(buttonButtonTexture, Language.GetTextValue("Dupe"));
-			dupeButton.Left.Set(25, 0f);
+			dupeButton.Left.Set(17, 0f);
 			dupeButton.Top.Set(90, 0f);
-			dupeButton.Width.Set(100, 0f);
+			dupeButton.Width.Set(240, 0f);
 			dupeButton.Width.Set(32, 0f);
 			dupeButton.OnClick += (evt, elem) => ModContent.GetInstance<DupeUIFunction>().dupeGamble();
 			DupeUI.Append(dupeButton);
@@ -69,7 +69,7 @@ namespace ROTMG_Items.UI
 			DupeWords.Width.Set(50, 0f);
 			DupeWords.Height.Set(34, 0f);
 			DupeWords.Top.Set(95, 0f);
-			DupeWords.Left.Set(25, 0f);
+			DupeWords.Left.Set(20, 0f);
 			DupeUI.Append(DupeWords);
 
 			points = new UIText("");

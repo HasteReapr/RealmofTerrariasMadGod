@@ -73,5 +73,11 @@ namespace ROTMG_Items
                 Main.NewText("You must have enough points. (You don't get to know how much though.)");
             }
         }
+
+        public override void clientClone(ModPlayer clientClone)
+        {
+            DupeUIFunction clone = clientClone as DupeUIFunction;
+
+        }
     }
 }
