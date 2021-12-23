@@ -35,8 +35,8 @@ namespace ROTMG_Items.NPCs.Bosses
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 1.69f * bossLifeScale);
-            npc.damage = (int)(npc.damage * 1.75f);
+            npc.lifeMax = (int)(npc.lifeMax * bossLifeScale);
+            npc.damage = (int)(npc.damage * 1.25f);
         }
 
         private const int AI_State_Slot = 0; //sets the default AI state to 0 which is State_Choose

@@ -12,12 +12,12 @@ namespace ROTMG_Items.Items.Abilities.Projectiles
         public override string Texture => "ROTMG_Items/Items/Abilities/Projectiles/SkullAOE";
 
         int[] time = {
-            3*60,
-            7*60,
-            10*60,
-            15*60,
-            20*60,
-            25*60
+            300,
+            420,
+            540,
+            660,
+            780,
+            1560
         };
 
         int[] buff = {
@@ -41,6 +41,11 @@ namespace ROTMG_Items.Items.Abilities.Projectiles
                 if (Main.player[i].active && Main.player[i].team == target.team && target.team != 0)
                 {
                     target.AddBuff(buff[(int)projectile.ai[1]], time[(int)projectile.ai[1]]);
+                    target.AddBuff(ModContent.BuffType<Damaging>(), time[(int)projectile.ai[1]]);
+                    if(projectile.ai[1] >= 1)
+                    {
+                        target.AddBuff(ModContent.BuffType<Healing>(), time[(int)projectile.ai[1]]);
+                    }
                 }
         }
 
@@ -48,7 +53,7 @@ namespace ROTMG_Items.Items.Abilities.Projectiles
         {
             for (int i = 0; i < 80; i++)
             {
-                int dustIndex = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, ModContent.DustType<Dusts.SkullDust>(), 0f, 0f, 100, default(Color), 3f);
+                int dustIndex = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, ModContent.DustType<Dusts.HealDust>(), 0f, 0f, 100, default(Color), 3f);
                 Main.dust[dustIndex].noGravity = true;
                 Main.dust[dustIndex].velocity *= 1f;
             }

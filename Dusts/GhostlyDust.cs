@@ -5,7 +5,7 @@ namespace ROTMG_Items.Dusts
 {
 	public class GhostlyDust : ModDust
 	{
-		public override void OnSpawn(Dust dust)
+        public override void OnSpawn(Dust dust)
 		{
 			dust.noGravity = true;
 			dust.noLight = false;

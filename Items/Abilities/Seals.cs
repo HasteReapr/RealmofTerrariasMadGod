@@ -24,12 +24,14 @@ namespace ROTMG_Items.Items.Abilities
             item.useAnimation = 15;
             item.useTime = 15;
             AncientCost = 20;
-            item.shootSpeed = 0;
             item.shoot = ModContent.ProjectileType<SealProjectile>();
             item.shootSpeed = 0;
             item.rare = ItemRarityID.Green;
             item.value = Item.buyPrice(gold: 1);
             isAbility = true;
+            tier = 0;
+            item.buffType = ModContent.BuffType<Buffs.Damaging>();
+            item.buffTime = 300;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -40,12 +42,12 @@ namespace ROTMG_Items.Items.Abilities
 
         public override bool UseItem(Player player)
         {
-            player.AddBuff(ModContent.BuffType<Buffs.Damaging>(), 300, false);
-            for (int i = 0; i < Main.maxPlayers; i++)
-                if (Main.player[i].active && Main.player[i].team == player.team && player.team != 0)
-                {
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.Damaging>(), 300, false);
-                }
+            player.AddBuff(item.buffType, item.buffTime);
+//            for (int i = 0; i < Main.maxPlayers; i++)
+//                if (Main.player[i].active && Main.player[i].team == player.team && player.team != 0)
+//                {
+//                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.Damaging>(), 300, false);
+//                }
             return true;
         }
     }
@@ -68,21 +70,27 @@ namespace ROTMG_Items.Items.Abilities
             item.useAnimation = 15;
             item.useTime = 15;
             AncientCost = 35;
+            item.shoot = ModContent.ProjectileType<SealProjectile>();
+            item.shootSpeed = 0;
             item.rare = ItemRarityID.Green;
             item.value = Item.buyPrice(gold: 1);
             isAbility = true;
+            tier = 1;
+            item.buffType = ModContent.BuffType<Buffs.Damaging>();
+            item.buffTime = 420;
+            buffType2 = ModContent.BuffType<Buffs.Healing>();
+            buffTime2 = 420;
         }
 
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            Projectile.NewProjectile(player.Center, player.DirectionTo(Main.MouseWorld) * item.shootSpeed, item.shoot, item.damage, item.knockBack, player.whoAmI, 0, tier);
+            return false;
+        }
         public override bool UseItem(Player player)
         {
-            player.AddBuff(ModContent.BuffType<Buffs.Damaging>(), 420, false);
-            player.AddBuff(ModContent.BuffType<Buffs.Healing>(), 420, false);
-            for (int i = 0; i < Main.maxPlayers; i++)
-                if (Main.player[i].active && Main.player[i].team == player.team && player.team != 0)
-                {
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.Damaging>(), 420, false);
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.Healing>(), 420, false);
-                }
+            player.AddBuff(item.buffType, item.buffTime);
+            player.AddBuff(buffType2, buffTime2);
             return true;
         }
     }
@@ -105,21 +113,28 @@ namespace ROTMG_Items.Items.Abilities
             item.useAnimation = 15;
             item.useTime = 15;
             AncientCost = 40;
+            item.shoot = ModContent.ProjectileType<SealProjectile>();
+            item.shootSpeed = 0;
             item.rare = ItemRarityID.Green;
             item.value = Item.buyPrice(gold: 1);
             isAbility = true;
+            tier = 2;
+            item.buffType = ModContent.BuffType<Buffs.Damaging>();
+            item.buffTime = 540;
+            buffType2 = ModContent.BuffType<Buffs.Healing>();
+            buffTime2 = 540;
+        }
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            Projectile.NewProjectile(player.Center, player.DirectionTo(Main.MouseWorld) * item.shootSpeed, item.shoot, item.damage, item.knockBack, player.whoAmI, 0, tier);
+            return false;
         }
 
         public override bool UseItem(Player player)
         {
-            player.AddBuff(ModContent.BuffType<Buffs.Damaging>(), 540, false);
-            player.AddBuff(ModContent.BuffType<Buffs.Healing>(), 540, false);
-            for (int i = 0; i < Main.maxPlayers; i++)
-                if (Main.player[i].active && Main.player[i].team == player.team && player.team != 0)
-                {
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.Damaging>(), 540, false);
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.Healing>(), 540, false);
-                }
+            player.AddBuff(item.buffType, item.buffTime);
+            player.AddBuff(buffType2, buffTime2);
             return true;
         }
     }
@@ -142,23 +157,31 @@ namespace ROTMG_Items.Items.Abilities
             item.useAnimation = 15;
             item.useTime = 15;
             AncientCost = 50;
+            item.shoot = ModContent.ProjectileType<SealProjectile>();
+            item.shootSpeed = 0;
             item.rare = ItemRarityID.Green;
             item.value = Item.buyPrice(gold: 1);
             isAbility = true;
+            tier = 3;
+            item.buffType = ModContent.BuffType<Buffs.Damaging>();
+            item.buffTime = 660;
+            buffType2 = ModContent.BuffType<Buffs.Healing>();
+            buffTime2 = 660;
+            buffType3 = ModContent.BuffType<Buffs.HPBoost4>();
+            buffTime3 = 660;
+        }
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            Projectile.NewProjectile(player.Center, player.DirectionTo(Main.MouseWorld) * item.shootSpeed, item.shoot, item.damage, item.knockBack, player.whoAmI, 0, tier);
+            return false;
         }
 
         public override bool UseItem(Player player)
         {
-            player.AddBuff(ModContent.BuffType<Buffs.Damaging>(), 660, false);
-            player.AddBuff(ModContent.BuffType<Buffs.Healing>(), 660, false);
-            player.AddBuff(ModContent.BuffType<Buffs.HPBoost>(), 660, false);
-            for (int i = 0; i < Main.maxPlayers; i++)
-                if (Main.player[i].active && Main.player[i].team == player.team && player.team != 0)
-                {
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.Damaging>(), 660, false);
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.Healing>(), 660, false);
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.HPBoost>(), 660, false);
-                }
+            player.AddBuff(item.buffType, item.buffTime);
+            player.AddBuff(buffType2, buffTime2);
+            player.AddBuff(buffType3, buffTime3);
             return true;
         }
     }
@@ -181,23 +204,31 @@ namespace ROTMG_Items.Items.Abilities
             item.useAnimation = 15;
             item.useTime = 15;
             AncientCost = 55;
+            item.shoot = ModContent.ProjectileType<SealProjectile>();
+            item.shootSpeed = 0;
             item.rare = ItemRarityID.Green;
             item.value = Item.buyPrice(gold: 1);
             isAbility = true;
+            tier = 4;
+            item.buffType = ModContent.BuffType<Buffs.Damaging>();
+            item.buffTime = 780;
+            buffType2 = ModContent.BuffType<Buffs.Healing>();
+            buffTime2 = 780;
+            buffType3 = ModContent.BuffType<Buffs.HPBoost5>();
+            buffTime3 = 780;
+        }
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            Projectile.NewProjectile(player.Center, player.DirectionTo(Main.MouseWorld) * item.shootSpeed, item.shoot, item.damage, item.knockBack, player.whoAmI, 0, tier);
+            return false;
         }
 
         public override bool UseItem(Player player)
         {
-            player.AddBuff(ModContent.BuffType<Buffs.Damaging>(), 780, false);
-            player.AddBuff(ModContent.BuffType<Buffs.Healing>(), 780, false);
-            player.AddBuff(ModContent.BuffType<Buffs.HPBoost>(), 780, false);
-            for (int i = 0; i < Main.maxPlayers; i++)
-                if (Main.player[i].active && Main.player[i].team == player.team && player.team != 0)
-                {
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.Damaging>(), 780, false);
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.Healing>(), 780, false);
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.HPBoost>(), 780, false);
-                }
+            player.AddBuff(item.buffType, item.buffTime);
+            player.AddBuff(buffType2, buffTime2);
+            player.AddBuff(buffType3, buffTime3);
             return true;
         }
     }
@@ -220,23 +251,31 @@ namespace ROTMG_Items.Items.Abilities
             item.useAnimation = 15;
             item.useTime = 15;
             AncientCost = 60;
+            item.shoot = ModContent.ProjectileType<SealProjectile>();
+            item.shootSpeed = 0;
             item.rare = ItemRarityID.Green;
             item.value = Item.buyPrice(gold: 1);
             isAbility = true;
+            tier = 5;
+            item.buffType = ModContent.BuffType<Buffs.Damaging>();
+            item.buffTime = 1560;
+            buffType2 = ModContent.BuffType<Buffs.Healing>();
+            buffTime2 = 1560;
+            buffType3 = ModContent.BuffType<Buffs.HPBoost6>();
+            buffTime3 = 1560;
+        }
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            Projectile.NewProjectile(player.Center, player.DirectionTo(Main.MouseWorld) * item.shootSpeed, item.shoot, item.damage, item.knockBack, player.whoAmI, 0, tier);
+            return false;
         }
 
         public override bool UseItem(Player player)
         {
-            player.AddBuff(ModContent.BuffType<Buffs.Damaging>(), 1560, false);
-            player.AddBuff(ModContent.BuffType<Buffs.Healing>(), 1560, false);
-            player.AddBuff(ModContent.BuffType<Buffs.HPBoost>(), 1560, false);
-            for (int i = 0; i < Main.maxPlayers; i++)
-                if (Main.player[i].active && Main.player[i].team == player.team && player.team != 0)
-                {
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.Damaging>(), 1560, false);
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.Healing>(), 1560, false);
-                    Main.player[i].AddBuff(ModContent.BuffType<Buffs.HPBoost>(), 1560, false);
-                }
+            player.AddBuff(item.buffType, item.buffTime);
+            player.AddBuff(buffType2, buffTime2);
+            player.AddBuff(buffType3, buffTime3);
             return true;
         }
     }

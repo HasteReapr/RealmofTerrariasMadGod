@@ -33,13 +33,16 @@ namespace ROTMG_Items
         public bool teamBuff = false;
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            var ancFunc = ModContent.GetInstance<AncientCostFunction>();
             var item = AbilitySlotItem.modItem;
             if(item is AncientCostFunction ancCost)
             {
                 useCost = ancCost.AncientCost;
                 buffInt = ancCost.item.buffType;
                 buffLength = ancCost.item.buffTime;
+                buffInt2 = ancCost.buffType2;
+                buffLength2 = ancCost.buffTime2;
+                buffInt3 = ancCost.buffType3;
+                buffLength3 = ancCost.buffTime3;
                 projType = ancCost.item.shoot;
                 speed = ancCost.item.shootSpeed;
                 damage = ancCost.item.damage;
@@ -112,7 +115,6 @@ namespace ROTMG_Items
         public override TagCompound Save()
         {
             return new TagCompound {
-				// {"somethingelse", somethingelse}, // To save more data, add additional lines
 				{"itemType", ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type},
             };
         }
@@ -120,6 +122,11 @@ namespace ROTMG_Items
         public override void Load(TagCompound tag)
         {
             ModContent.GetInstance<ROTMG_Items>().AbilitySlotUI._vanillaItemSlot.Item.type = tag.GetInt("itemType");
+        }
+
+        public override void Initialize()
+        {
+            //make it load the item from the slot here so it saves when the mod reloads
         }
     }
 }

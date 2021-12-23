@@ -108,11 +108,13 @@ namespace ROTMG_Items
                             PetPlayer PetPlayer = Main.player[playernumber].GetModPlayer<PetPlayer>();
                             bool SpritePet = reader.ReadBoolean();
                             bool Stonepet = reader.ReadBoolean();
+                            bool SupporterPet = reader.ReadBoolean();
                             PetPlayer.Stonepet = Stonepet;
                             PetPlayer.SpritePet = SpritePet;
+                            PetPlayer.SupporterPet = SupporterPet;
                             break;
                     }
-                    break;
+                break;
             }
         }
         public override void Load()

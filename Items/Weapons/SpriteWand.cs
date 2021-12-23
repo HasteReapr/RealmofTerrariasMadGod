@@ -63,8 +63,8 @@ namespace ROTMG_Items.Items.Weapons
             {
                 item.autoReuse = true;
                 item.shootSpeed = 4;
-                item.useTime = 10;
-                item.useAnimation = 10;
+                item.useTime = 5;
+                item.useAnimation = 5;
                 Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<Sprite_Green_Proj>(), 40, 3, Main.myPlayer);
             }
             else if(colortype == 5)
@@ -100,7 +100,6 @@ namespace ROTMG_Items.Items.Weapons
             Texture2D texture = ModContent.GetTexture("ROTMG_Items/Items/Weapons/SpriteWand");
             int timeFramesPerAnimationFrame = 9999999;
             int totalAnimationFrames = 5;
-            Vector2 subs = new Vector2(0, 10);
             if(colortype == 1)
             {
                 frame = 0;
@@ -127,6 +126,7 @@ namespace ROTMG_Items.Items.Weapons
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
+            // use a held projectile for this instead of whatever the fuck this is
             int timeFramesPerAnimationFrame = 99999999;
             int totalAnimationFrames = 5;
             Texture2D texture = ModContent.GetTexture("ROTMG_Items/Items/Weapons/RedSpriteWand");
@@ -156,12 +156,6 @@ namespace ROTMG_Items.Items.Weapons
                 spriteBatch.Draw(texture, item.position - Main.screenPosition, item.GetCurrentFrame(ref frame, ref frameCounter, timeFramesPerAnimationFrame, totalAnimationFrames), lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
             }
             return true;
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            //I dunno what I;m supposed to do here, I'm trying to add a single line to the tooltip to add a short description
-            //of the projectile it shoots in that color.
         }
     }
 }

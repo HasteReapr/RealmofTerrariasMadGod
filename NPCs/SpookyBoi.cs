@@ -10,7 +10,7 @@ namespace ROTMG_Items.NPCs
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lost Paladin");
+            DisplayName.SetDefault("Spectral Guard");
             Main.npcFrameCount[npc.type] = 4;
         }
 
@@ -56,6 +56,8 @@ namespace ROTMG_Items.NPCs
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Pets.SpookyCloth>(), 1);
+            if (Main.rand.NextBool(50))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.SpookyScythe>(), 1);
         }
         
         private const int AI_State_Slot = 0;

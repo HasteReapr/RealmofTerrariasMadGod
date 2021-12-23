@@ -19,7 +19,6 @@ namespace ROTMG_Items.UI
 		private readonly int _context;
 		private readonly float _scale;
 		internal Func<Item, bool> ValidItemFunc;
-
 		public VanillaItemSlotWrapper(int context = ItemSlot.Context.BankItem, float scale = 1f)
 		{
 			_context = context;
@@ -46,8 +45,7 @@ namespace ROTMG_Items.UI
 					ItemSlot.Handle(ref Item, _context);
 				}
 			}
-			// Draw draws the slot itself and Item. Depending on context, the color will change, as will drawing other things like stack counts.
-			ItemSlot.Draw(spriteBatch, ref Item, _context, rectangle.TopLeft());
+			ItemSlot.Draw(spriteBatch, ref Item, _context, new Vector2(Left.Pixels, Top.Pixels));
 			Main.inventoryScale = oldScale;
 		}
 	}

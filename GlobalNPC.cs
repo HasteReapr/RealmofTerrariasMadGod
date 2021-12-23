@@ -75,6 +75,21 @@ namespace ROTMG_Items
 				Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.LunarEssence>(), 1);
 			}
 
+			if(npc.type == NPCID.CultistBoss)
+            {
+                if (Main.expertMode)
+                {
+					if (Main.rand.NextBool(100))
+					{
+						Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Abilities.Oreo>(), 1);
+					}
+				}
+				else if (Main.rand.NextBool(200))
+                {
+					Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Abilities.Oreo>(), 1);
+                }
+            }
+
 			Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Currency.XPDrop>(), 1);
 
 			if(NPC.downedPlantBoss == true)

@@ -11,11 +11,13 @@ namespace ROTMG_Items
     {
         public bool SpritePet;
         public bool Stonepet;
+        public bool SupporterPet;
 
         public override void ResetEffects()
         {
             SpritePet = false;
             Stonepet = false;
+            SupporterPet = false;
         }
 
         internal enum SyncPlayerMessage : byte
@@ -23,6 +25,7 @@ namespace ROTMG_Items
             Pets,
             SpritePet,
             Stonepet,
+            SupporterPet,
         }
         internal enum ROTMGModMessageType : byte
         {
@@ -50,7 +53,8 @@ namespace ROTMG_Items
             return new TagCompound
             {
                 {"SpritePet", SpritePet},
-                {"StonePet", Stonepet }
+                {"StonePet", Stonepet },
+                {"SupporterPet", SupporterPet},
             };
         }
 
@@ -58,6 +62,7 @@ namespace ROTMG_Items
         {
             SpritePet = tag.GetBool("SpritePet");
             Stonepet = tag.GetBool("Stonepet");
+            SupporterPet = tag.GetBool("SupporterPet");
         }
     }
 }

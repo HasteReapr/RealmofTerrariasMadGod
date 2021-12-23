@@ -34,7 +34,7 @@ namespace ROTMG_Items.Items.Weapons.Projectiles
                 Vector2 dir = Vector2.UnitX.RotatedByRandom(MathHelper.Pi);
                 Vector2 spawnPos = projectile.Center + dir * radius * 16;
                 Vector2 spawnVel = dir * speed;
-                Dust.NewDustPerfect(spawnPos, ModContent.DustType<Dusts.GhostlyDust>(), spawnVel);
+                Dust.NewDustPerfect(spawnPos, ModContent.DustType<Dusts.RichDust>(), spawnVel);
             }
         }
 

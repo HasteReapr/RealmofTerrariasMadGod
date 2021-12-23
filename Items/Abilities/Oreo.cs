@@ -9,8 +9,8 @@ namespace ROTMG_Items.Items.Abilities
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Seal of Blasphemous Prayer");
-            Tooltip.SetDefault("A seal infused with an unholy power.");
+            DisplayName.SetDefault("Seal of the Lunatic Cultists");
+            Tooltip.SetDefault("A seal of utter blasphemy.");
         }
 
         public override void SetDefaults()
@@ -20,17 +20,19 @@ namespace ROTMG_Items.Items.Abilities
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.useAnimation = 15;
             item.useTime = 15;
-            AncientCost = 85;
+            AncientCost = 175;
             item.rare = ItemRarityID.Expert;
             item.value = Item.buyPrice(gold: 1);
             item.buffType = ModContent.BuffType<Buffs.Damaging>();
             item.buffTime = 480;
+            buffType2 = ModContent.BuffType<Buffs.Invulnerable>();
+            buffTime2 = 150;
             isAbility = true;
         }
 
         public override bool UseItem(Player player)
         {
-            player.AddBuff(ModContent.BuffType<Buffs.Invulnerable>(), 120);
+            player.AddBuff(buffType2, buffTime2);
             return true;
         }
         public override bool CanUseItem(Player player)

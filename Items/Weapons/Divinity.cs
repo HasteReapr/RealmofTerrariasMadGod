@@ -14,7 +14,7 @@ namespace ROTMG_Items.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Divinity"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-            Tooltip.SetDefault("The chosen blade of Oryx the Mad God, charged with an unrelenting energy to subdue all that lies before it.\nIgnores the degense of enemies.");
+            Tooltip.SetDefault("A sword of corrupted holy power. It's weld by Oryx the mad god\nIgnores the defense of enemies.");
             // Ticks per frame, frame count
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(10, 4));
             //ItemID.Sets.ItemIconPulse[item.type] = false;
@@ -46,7 +46,6 @@ namespace ROTMG_Items.Items.Weapons
         public int frameCounter;
         public override void HoldItem(Player player)
         {
-            base.HoldItem(player);
             player.armorPenetration = 2000000; // Do this to armor pierce.
             timer--;
         }
